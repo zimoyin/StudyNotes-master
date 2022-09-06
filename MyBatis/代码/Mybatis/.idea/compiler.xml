@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="day06-log" />
+        <module name="day03-config" />
+        <module name="day10-dynamicSQL" />
+        <module name="day01-HollWorld" />
+        <module name="day02-CRUD" />
+        <module name="day04-resultMap" />
+        <module name="day05-paging" />
+        <module name="day09-1_n" />
+        <module name="day08" />
+        <module name="day07-annotation" />
+        <module name="day11-cache" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="log" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

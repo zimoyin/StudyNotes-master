@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/day01/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day01/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day02-DI/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day02-DI/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day03-Autowire/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day03-Autowire/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day04-AnnotationAutowire/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day04-AnnotationAutowire/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day05-Annotation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day05-Annotation/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day06-appconfig/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day06-appconfig/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day08-aop/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day08-aop/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day09-AOPAnnotation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day09-AOPAnnotation/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day10-mybatis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/day10-mybatis/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

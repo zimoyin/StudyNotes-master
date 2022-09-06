@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="day04-AnalysisSpringMVC" />
+        <module name="day01_servlet" />
+        <module name="day05-ReturnJSON" />
+        <module name="day03-HelloSpringMVC_Annotation" />
+        <module name="day06-SSM" />
+        <module name="day02-HelloSpringMVC" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

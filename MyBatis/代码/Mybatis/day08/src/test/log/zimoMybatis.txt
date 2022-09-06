@@ -1,0 +1,366 @@
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection 376416077.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@166fa74d]
+[DEBUG][21-01-26][com.zimo.dao.TeacherMapper.getTeacher]==>  Preparing: select * from teacher where id=? 
+[DEBUG][21-01-26][com.zimo.dao.TeacherMapper.getTeacher]==> Parameters: 1(Integer)
+[DEBUG][21-01-26][com.zimo.dao.TeacherMapper.getTeacher]<==      Total: 1
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@166fa74d]
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@166fa74d]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Returned connection 376416077 to pool.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][21-01-26][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Listing file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 B
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 5 %
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Student matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Teacher matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection 2040352617.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@799d4f69]
+[DEBUG][21-01-26][com.zimo.dao.TeacherMapper.getTeacher]==>  Preparing: select * from teacher where id=? 
+[DEBUG][21-01-26][com.zimo.dao.TeacherMapper.getTeacher]==> Parameters: 1(Integer)
+[DEBUG][21-01-26][com.zimo.dao.TeacherMapper.getTeacher]<==      Total: 1
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@799d4f69]
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@799d4f69]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Returned connection 2040352617 to pool.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][21-01-26][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Listing file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 B
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 5 %
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Student matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Teacher matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection 1848415041.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@6e2c9341]
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==>  Preparing: SELECT s.id,s.name,t.name FROM student s,teacher t WHERE s.tid=t.`id`; 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==> Parameters: 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]<==      Total: 5
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@6e2c9341]
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@6e2c9341]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Returned connection 1848415041 to pool.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][21-01-26][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Listing file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 B
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 5 %
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Student matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Teacher matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection 124407148.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==>  Preparing: SELECT * FROM student 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==> Parameters: 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getTeacher]====>  Preparing: SELECT * FROM teacher where id= ? 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getTeacher]====> Parameters: 1(Integer)
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getTeacher]<====      Total: 1
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]<==      Total: 5
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Returned connection 124407148 to pool.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][21-01-26][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Listing file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 B
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 5 %
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Student matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Teacher matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection 124407148.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==>  Preparing: SELECT s.id sid, s.name sname, t.name tname FROM student s, teacher t WHERE s.tid=t.`id`; 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==> Parameters: 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]<==      Total: 5
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Returned connection 124407148 to pool.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][21-01-26][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Listing file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 B
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 5 %
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Student matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Teacher matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection 124407148.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==>  Preparing: SELECT s.id sid, s.name sname, t.name tname FROM student s, teacher t WHERE s.tid=t.`id`; 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==> Parameters: 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]<==      Total: 5
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Returned connection 124407148 to pool.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][21-01-26][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Listing file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 B
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 5 %
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Student matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Teacher matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection 124407148.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==>  Preparing: SELECT s.id sid, s.name sname, t.name tname FROM student s, teacher t WHERE s.tid=t.`id`; 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==> Parameters: 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]<==      Total: 5
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Returned connection 124407148 to pool.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][21-01-26][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Listing file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 B
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 5 %
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Student matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Teacher matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection 124407148.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==>  Preparing: SELECT s.id sid, s.name sname, t.name tname FROM student s, teacher t WHERE s.tid=t.`id`; 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==> Parameters: 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]<==      Total: 5
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Returned connection 124407148 to pool.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][21-01-26][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Listing file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 B
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 5 %
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Student matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Teacher matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection 124407148.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==>  Preparing: SELECT * FROM student 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==> Parameters: 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getTeacher]====>  Preparing: SELECT * FROM teacher where id= ? 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getTeacher]====> Parameters: 1(Integer)
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getTeacher]<====      Total: 1
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]<==      Total: 5
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Returned connection 124407148 to pool.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VFS
+[DEBUG][21-01-26][org.apache.ibatis.io.JBoss6VFS]JBoss 6 VFS API is not available in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Class not found: org.jboss.vfs.VirtualFile
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+[DEBUG][21-01-26][org.apache.ibatis.io.VFS]Using VFS adapter org.apache.ibatis.io.DefaultVFS
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Listing file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Student.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 B
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Find JAR URL: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Not a JAR: file:/D:/workCode/Mybatis/day08/target/classes/com/zimo/pojo/Teacher.class
+[DEBUG][21-01-26][org.apache.ibatis.io.DefaultVFS]Reader entry: ����   1 5 %
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Student matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.io.ResolverUtil]Checking to see if class com.zimo.pojo.Teacher matches criteria [is assignable to Object]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection 124407148.
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==>  Preparing: SELECT s.id sid, s.name sname, t.name tname FROM student s, teacher t WHERE s.tid=t.`id`; 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]==> Parameters: 
+[DEBUG][21-01-26][com.zimo.dao.StudentMapper.getStudent]<==      Total: 5
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@76a4d6c]
+[DEBUG][21-01-26][org.apache.ibatis.datasource.pooled.PooledDataSource]Returned connection 124407148 to pool.

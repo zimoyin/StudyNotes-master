@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <bean id="cat" class="com.zimo.Cat"></bean>
+        <bean id="dog" class="com.zimo.Dog"></bean>
+<!--        类型自动转配-->
+        <bean id="user"
+              class="com.zimo.User"
+              autowire="byType">
+        </bean>
+
+<!--
+名称自动装配
+<bean id="cat" class="com.zimo.Cat"></bean>
+-->
+
+</beans>

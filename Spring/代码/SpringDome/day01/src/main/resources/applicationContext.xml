@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--  无参构造-->
+<!--    <bean name="hello" class="com.zimo.HelloSpring">-->
+<!--        <property name="str" value="HelloWorld"/>-->
+<!--    </bean>-->
+
+<!--    * 第三种： 通过参数名赋值-->
+    <bean name="hello" class="com.zimo.HelloSpring">
+        <constructor-arg  name="name" value="紫陌"/>
+    </bean>
+
+</beans>

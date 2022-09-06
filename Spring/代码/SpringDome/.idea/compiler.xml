@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="day01" />
+        <module name="day02-DI" />
+        <module name="day06-appconfig" />
+        <module name="day09-AOPAnnotation" />
+        <module name="day05-Annotation" />
+        <module name="day04-AnnotationAutowire" />
+        <module name="day03-Autowire" />
+        <module name="day08-aop" />
+        <module name="day10-mybatis" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Annotation" target="1.8" />
+      <module name="day02_DI" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.zimo.dao.TeacherMapper">
+
+
+    <!--按查询嵌套处理-->
+    <!--猜想的的查询流程: 去查teacher表，然后根据teacher的id去查student表随后将查出来的内容放入Teacher.class的属性里-->
+
+    <resultMap id="TeacherStudent" type="teacher">
+        <!--其他字段与class的属性名称一致且为基本类型所以这里就不做映射了-->
+        <!--
+            property:  类的属性名称
+            column：老师的ID放入getStudentByTeacherID给id=#{tid}赋值,查询后的结果返回给property(类的属性值)
+            =============================================
+            com.zimo.pojo.Teacher.private List<Student> students;
+
+            javaType: 用来指定实体类中的属性的类型,在这里是ArrayList
+            ofType: 用来指定映射到List或集合中的pojo的类型，在这里是Student(全限定名)
+            ==========================================
+            select：根据老师的ID查询学生
+            column:
+         -->
+        <collection property="students" javaType="ArrayList" ofType="student"  select="getStudentByTeacherID" column="id">
+
+        </collection>
+    </resultMap>
+
+    <select id="getTeacher" resultMap="TeacherStudent">
+        select * from  teacher where id=#{tid}
+    </select>
+
+    <select id="getStudentByTeacherID" resultType="student">
+        select * from  student where tid=#{tid}
+    </select>
+
+
+
+
+
+
+
+
+    <!--按结果嵌套查询-->
+
+    <!--<resultMap id="TeacherStudent" type="teacher">-->
+    <!--    <result property="id" column="tid"/>-->
+    <!--    <result property="name" column="tname"/>-->
+    <!--    &lt;!&ndash; 复杂的属性，我们需要单独处理     对象:association      集合:collection&ndash;&gt;-->
+    <!--    &lt;!&ndash;-->
+    <!--        javaType:指定属性的类型-->
+    <!--        但是这个返回的是一个List。所以集合中的泛型信息，我们用ofType获取-->
+    <!--    &ndash;&gt;-->
+    <!--    <collection property="students" ofType="Student">-->
+    <!--        <result property="id" column="sid"/>-->
+    <!--        <result property="name" column="sname"/>-->
+    <!--        <result property="tid" column="tid"/>-->
+    <!--    </collection>-->
+    <!--</resultMap>-->
+
+    <!--<select id="getTeacher" resultMap="TeacherStudent">-->
+    <!--        SELECT-->
+    <!--            s.id sid,-->
+    <!--            s.name sname,-->
+    <!--            t.name tname,-->
+    <!--            t.id tid-->
+    <!--        FROM-->
+    <!--            student s,-->
+    <!--            teacher t-->
+    <!--        WHERE s.tid=t.`id` and t.id = 1;-->
+    <!--</select>-->
+
+</mapper>

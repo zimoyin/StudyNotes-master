@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace = 绑定一个对应的Dao/mapper接口-->
+<!-- 绑定com.zimo.dao.UserDao 接口-->
+<mapper namespace="com.zimo.dao.UserMapper">
+
+<!--查询全部用户-->
+    <select id="getUserList" resultType="User">
+        select  id,name,pwd from mybatis.user;
+    </select>
+
+<!--根据ID查询记录-->
+    <select id="getUserByID" parameterType="int" resultType="com.zimo.pojo.User">
+        select  * from mybatis.user where id=#{id};
+    </select>
+
+
+<!--  插入一个用户  -->
+    <insert id="addUser"    parameterType="com.zimo.pojo.User">
+            insert into mybatis.user (id,name,pwd) value (#{id},#{name},#{pwd})
+    </insert>
+
+<!--  根据ID修改记录  -->
+    <update id="updateUser" parameterType="com.zimo.pojo.User">
+        update mybatis.user set  name =#{name },pwd=#{pwd}   where id=#{id} ;
+    </update>
+
+<!--  根据ID删除用户  -->
+    <delete id="deleteUser" parameterType="int" >
+        delete from user where id =#{id}
+    </delete>
+
+
+
+
+</mapper>
