@@ -2505,6 +2505,7 @@ lombok是一个可以通过简单的注解的形式来帮助我们简化消除�
 > @UtilityClass
 > Lombok config system
 
+### 4. 使用dynamic-datasource-spring-boot-starter做多数据源
 
 # END
 

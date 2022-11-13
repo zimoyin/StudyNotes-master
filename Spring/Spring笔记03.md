@@ -289,9 +289,9 @@ Spring 3中为Bean定义了5中作用域，分别为 **singleton（单例）、p
 例：  
 * applicationContext.xml  
 ```xml
-        <bean name="hello" class="com.zimo.HelloSpring">
-                <property name="str" value="HelloWorld"/>
-        </bean>
+<bean name="hello" class="com.zimo.HelloSpring">
+    <property name="str" value="HelloWorld"/>
+</bean>
 ```
 * HelloSpring.java  
 ```java
