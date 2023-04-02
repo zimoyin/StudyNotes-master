@@ -1,4 +1,4 @@
-# MyBatis
+# 	MyBatis
 
 Mysql 5.7 下载:https://cdn.mysql.com//archives/mysql-5.7/mysql-5.7.19-winx64.zip
 
@@ -281,7 +281,7 @@ public class User {
                 System.out.println(u);
             }
         }catch (Exception e){
-
+			e.printStackTrace();
         }finally {
             //关闭sqlsession
             sqlSession.close();

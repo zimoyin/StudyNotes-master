@@ -1187,57 +1187,138 @@ public static void main(String[] args) throws Exception {
 
 **如果加载不到实现类，那么就在`src/META-INF/services/`下创建，或者将resources定义为resources文件（IDEA），resources定义为源文件（eclipse）**
 
-
+**ServiceLoader 会调用类加载器的 getResources 方法，如果该方法无法扫描到你的resources 请重写该方法。如果你用是自定义类加载器**
 
 # 十、番外
 
-##### (查找)发现类
+## 1.  (查找)发现类
 
 通过下面的工具类可以获取项目里面的类的全限定名。
 
 有了全限定名就可以动态加载项目里面的类了(使用Class.forName(packageName))
 
 ```java
+package github.zimoyin.mtool.uilt;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.JarURLConnection;
+import java.net.URL;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+import java.util.stream.Collectors;
+
 /**
  * 通过反射来查找包下的所有的类
  */
-public class FindClass implements Utils{
-
+public class FindClass {
+    //默认扫描位置
+//    private static final String PackagePath = "github.zimoyin";
+    private static final String PackagePath = "";
 
     private static final String CLASS_SUFFIX = ".class";
-    private static final String CLASS_FILE_PREFIX = File.separator + "classes"  + File.separator;
+    private static final String CLASS_FILE_PREFIX = File.separator + "classes" + File.separator;
     private static final String PACKAGE_SEPARATOR = ".";
+    private static final Logger logger = LoggerFactory.getLogger(FindClass.class);
+
+    private static List<String> results;
+    private static List<? extends Class<?>> resultsClasses;
+
+    /**
+     * 返回扫描的默认位置的结果集
+     */
+    public static List<String> getResults() {
+        if (results == null) {
+            results = new ArrayList<String>();
+            results = getClazzName(PackagePath, true);
+            results = results.stream().filter(Objects::nonNull).filter(FindClass::isBlacklist).collect(Collectors.toList());
+        }
+        return results;
+    }
+
+    /**
+     * 返回扫描的默认位置的结果集
+     */
+    public static List<? extends Class<?>> getResultsToClasses() {
+        if (resultsClasses == null) {
+            resultsClasses = getResults().stream()
+                    .map(FindClass::toClass)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+        }
+        return resultsClasses;
+    }
+
+    /**
+     * 将类路径转为类实例
+     */
+    private static Class<?> toClass(String cls) {
+        try {
+            return Class.forName(cls);
+        } catch (ClassNotFoundException e) {
+            logger.warn("无法将此类路径加载成 Class 实例: {}", cls, e);
+        }
+        return null;
+    }
+
+    /**
+     * 初始化加载类的黑名单
+     */
+    private static boolean isBlacklist(String s) {
+        HashSet<String> blacklist = new HashSet<String>();
+        blacklist.add("github.zimoyin.tool.mirai.config.BotConfigurationImpl");
+        blacklist.add("github.zimoyin.core");
+        return !blacklist.contains(s);
+    }
 
     /**
      * 查找包下的所有类的名字
+     *
      * @return List集合，内容为类的全名
      */
+    public static List<String> getClazzName(String packageName, boolean showChildPackageFlag) {
+        logger.debug("======================= 查找类 ===========================");
 
-    public static List<String> getClazzName(String packageName, boolean showChildPackageFlag ) {
         List<String> result = new ArrayList<>();
         String suffixPath = packageName.replaceAll("\\.", "/");
+
+        logger.debug("查找 " + packageName + " 下的类，递归查找子文件: " + showChildPackageFlag);
+
         //获取线程的类加载器（线程类加载器突破双亲委派）
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         try {
             //获取url： 查找具有给定(路径)名称的所有资源
             Enumeration<URL> urls = loader.getResources(suffixPath);
-            while(urls.hasMoreElements()) {
+            while (urls.hasMoreElements()) {
                 URL url = urls.nextElement();
-                if(url != null) {
+
+                logger.debug("查找 " + packageName + " 下的类(URL): " + url);
+
+
+                if (url != null) {
                     //获取URL的协议，如果是class就是file协议，jar就是jar协议
                     String protocol = url.getProtocol();
-                    if("file".equals(protocol)) {
+                    if ("file".equals(protocol)) {
                         String path = url.getPath();//类路径
                         result.addAll(getAllClassNameByFile(new File(path), showChildPackageFlag));
-                    } else if("jar".equals(protocol)) {
+
+                        logger.debug("查找 " + packageName + " 下的类: " + getAllClassNameByFile(new File(path), showChildPackageFlag).size());
+                    } else if ("jar".equals(protocol)) {
                         JarFile jarFile = null;
-                        try{
+                        try {
                             jarFile = ((JarURLConnection) url.openConnection()).getJarFile();
-                        } catch(Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        if(jarFile != null) {
+                        if (jarFile != null) {
                             result.addAll(getAllClassNameByJar(jarFile, packageName, showChildPackageFlag));
+
+                            logger.debug("查找 " + packageName + " 下(jar中)的类: " + getAllClassNameByJar(jarFile, packageName, showChildPackageFlag).size());
                         }
                     }
                 }
@@ -1245,30 +1326,34 @@ public class FindClass implements Utils{
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        logger.debug("查找到的类数量： " + result.size());
+        logger.debug("======================= 查找类END ========================");
         return result;
     }
 
 
     /**
      * 递归获取所有class文件的名字
+     *
      * @param file
-     * @param flag  是否需要迭代遍历
+     * @param flag 是否需要迭代遍历
      * @return List
      */
     private static List<String> getAllClassNameByFile(File file, boolean flag) {
-        List<String> result =  new ArrayList<>();
-        if(!file.exists()) {
+        List<String> result = new ArrayList<>();
+        if (!file.exists()) {
             return result;
         }
-        if(file.isFile()) {
+        if (file.isFile()) {
             String path = file.getPath();
             // 注意：这里替换文件分割符要用replace。因为replaceAll里面的参数是正则表达式,而windows环境中File.separator="\\"的,因此会有问题
-            if(path.endsWith(CLASS_SUFFIX)) {
+            if (path.endsWith(CLASS_SUFFIX)) {
                 path = path.replace(CLASS_SUFFIX, "");
                 // 从"/classes/"后面开始截取
                 String clazzName = path.substring(path.indexOf(CLASS_FILE_PREFIX) + CLASS_FILE_PREFIX.length())
                         .replace(File.separator, PACKAGE_SEPARATOR);
-                if(-1 == clazzName.indexOf("$")) {
+                if (!clazzName.contains("$")) {
                     result.add(clazzName);
                 }
             }
@@ -1276,19 +1361,19 @@ public class FindClass implements Utils{
 
         } else {
             File[] listFiles = file.listFiles();
-            if(listFiles != null && listFiles.length > 0) {
+            if (listFiles != null && listFiles.length > 0) {
                 for (File f : listFiles) {
-                    if(flag) {
+                    if (flag) {
                         result.addAll(getAllClassNameByFile(f, flag));
                     } else {
-                        if(f.isFile()){
+                        if (f.isFile()) {
                             String path = f.getPath();
-                            if(path.endsWith(CLASS_SUFFIX)) {
+                            if (path.endsWith(CLASS_SUFFIX)) {
                                 path = path.replace(CLASS_SUFFIX, "");
                                 // 从"/classes/"后面开始截取
                                 String clazzName = path.substring(path.indexOf(CLASS_FILE_PREFIX) + CLASS_FILE_PREFIX.length())
                                         .replace(File.separator, PACKAGE_SEPARATOR);
-                                if(-1 == clazzName.indexOf("$")) {
+                                if (!clazzName.contains("$")) {
                                     result.add(clazzName);
                                 }
                             }
@@ -1303,28 +1388,29 @@ public class FindClass implements Utils{
 
     /**
      * 递归获取jar所有class文件的名字
+     *
      * @param jarFile
      * @param packageName 包名
-     * @param flag  是否需要迭代遍历
+     * @param flag        是否需要迭代遍历
      * @return List
      */
     private static List<String> getAllClassNameByJar(JarFile jarFile, String packageName, boolean flag) {
-        List<String> result =  new ArrayList<>();
+        List<String> result = new ArrayList<>();
         Enumeration<JarEntry> entries = jarFile.entries();
-        while(entries.hasMoreElements()) {
+        while (entries.hasMoreElements()) {
             JarEntry jarEntry = entries.nextElement();
             String name = jarEntry.getName();
             // 判断是不是class文件
-            if(name.endsWith(CLASS_SUFFIX)) {
+            if (name.endsWith(CLASS_SUFFIX)) {
                 name = name.replace(CLASS_SUFFIX, "").replace("/", ".");
-                if(flag) {
+                if (flag) {
                     // 如果要子包的文件,那么就只要开头相同且不是内部类就ok
-                    if(name.startsWith(packageName) && -1 == name.indexOf("$")) {
+                    if (name.startsWith(packageName) && !name.contains("$")) {
                         result.add(name);
                     }
                 } else {
                     // 如果不要子包的文件,那么就必须保证最后一个"."之前的字符串和包名一样且不是内部类
-                    if(packageName.equals(name.substring(0, name.lastIndexOf("."))) && -1 == name.indexOf("$")) {
+                    if (packageName.equals(name.substring(0, name.lastIndexOf("."))) && !name.contains("$")) {
                         result.add(name);
                     }
                 }
@@ -1332,30 +1418,8 @@ public class FindClass implements Utils{
         }
         return result;
     }
-    
-    
-        /**
-     * 获取jar包下的class文件名称
-     * @URL https://blog.csdn.net/xiao1_1bing/article/details/85122085
-     * @param jarFilePath
-     * @return
-     */
-    public static List<String> getJarClassName(String jarFilePath) {
-        ArrayList<String> classNames = new ArrayList<>();
-        JarFile jarFile = null;
-        try {
-            jarFile = new JarFile(jarFilePath);
-            Enumeration<JarEntry> entrys = jarFile.entries();
-            while (entrys.hasMoreElements()) {
-                JarEntry jarEntry = entrys.nextElement();
-                classNames.add(jarEntry.getName());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return classNames;
-    }
-    
+
+
     /**
      * 获取jar包下的class文件名称
      *
@@ -1363,7 +1427,7 @@ public class FindClass implements Utils{
      * @return
      * @URL https://blog.csdn.net/xiao1_1bing/article/details/85122085
      */
-    public static List<String> getJarClassName0(String jarFilePath) {
+    public static List<String> getJarClassName(String jarFilePath) {
         ArrayList<String> classNames = new ArrayList<>();
         JarFile jarFile = null;
         try {
@@ -1375,22 +1439,32 @@ public class FindClass implements Utils{
                 //如果是class文件就放入集合
                 try {
                     String classPath = jarEntry.getName().replaceAll("/", "\\.");
-                    if (classPath.lastIndexOf(".") == classPath.length()-1 ) continue;
+                    if (classPath.lastIndexOf(".") == classPath.length() - 1) continue;
                     String lastName = classPath.substring(classPath.lastIndexOf("."));
-                    if (lastName.equals(".class")) classNames.add(classPath.substring(0,classPath.lastIndexOf(".")));//去掉.class后缀
-                }catch (Exception e){
+                    if (lastName.equals(".class"))
+                        classNames.add(classPath.substring(0, classPath.lastIndexOf(".")));//去掉.class后缀
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            if (jarFile != null) {
+                try {
+                    jarFile.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
         return classNames;
     }
 }
+
 ```
 
-##### 调用类的构造方法
+## 2. 调用类的构造方法
 
 ```java
 aClass = Class.forName(packageName);
@@ -1404,7 +1478,7 @@ for (Constructor<?> declaredConstructor : declaredConstructors) {
 
 
 
-##### 配置文件加载
+## 3. 配置文件加载
 
 ```java
 //获取线程的类加载器（线程类加载器突破双亲委派）
@@ -1415,11 +1489,69 @@ InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().ge
 InputStream resourceAsStream = this.getClass.getResource("app.json").openStream();
 // 加载配置文件有时候加载不到
 InputStream resourceAsStream = this.getClass.getResourceAsStream("app.json");
+//通过JDK的类加载器获取JDK类加载器所能加载到所有配置文件
+ClassLoader.getSystemResources("app/");
+myClassLoader.getResources(PATH);
+```
+
+* 使用自定义类加载器加载配置文件。在自定义类加载器实现中添加（未测试）
+
+```java
+/**
+* 获取jar中的resources 目录下的文件
+*/
+public URL printResources(String jarFilePath, String path) throws IOException {
+    try (JarFile jarFile = new JarFile(jarFilePath)) {
+        Enumeration<JarEntry> entries = jarFile.entries();
+        while (entries.hasMoreElements()) {
+            JarEntry entry = entries.nextElement();
+            String entryName = entry.getName();
+            if (entryName.startsWith(path)) {
+                StringBuilder urlStr = new StringBuilder();
+                urlStr.append("jar:file:/");
+                urlStr.append(new File(jarFilePath).getCanonicalPath().replace("\\", "/"));
+                urlStr.append("!");
+                if (entryName.charAt(0) != '/') urlStr.append("/");
+                urlStr.append(entryName);
+                return new URL(urlStr.toString());
+            }
+        }
+    }
+    return null;
+}
+
+@Override
+public Enumeration<URL> getResources(String path) throws IOException {
+    List<URL> urls = new ArrayList<>();
+    Enumeration<URL> resources = super.getResources(path);
+    if (this.path != null && new File(this.path).isFile()) urls.add(printResources(this.path, path));
+    while (resources.hasMoreElements()) urls.add(resources.nextElement());
+    for (String rootPath : getClassRootPaths()) {
+        if (new File(rootPath).isFile()) urls.add(printResources(rootPath, path));
+    }
+    urls = urls.stream().filter(Objects::nonNull).collect(Collectors.toList());
+    return Collections.enumeration(urls);
+}
+
+
+@Nullable
+@Override
+@Deprecated
+public URL getResource(String name) {
+    return super.getResource(name);
+}
+
+@Nullable
+@Override
+@Deprecated
+public InputStream getResourceAsStream(String name) {
+    return super.getResourceAsStream(name);
+}
 ```
 
 
 
-##### 隔离
+## 4. 隔离
 
 两个不同的加载同一个的类那么他们是不能互相转换的
 
@@ -1427,4 +1559,307 @@ InputStream resourceAsStream = this.getClass.getResourceAsStream("app.json");
 
 * 访问到的静态变量是在对象A下的静态变量，如果插件中的静态变量值变量被修改那么对象A是无法访问到静态变量修改后的值
 
-  
+## 5. 自定义类加载器：jar 与 class 都能加载
+
+将 三和四的案例中 `getClassBytes` 方法改为引用以下类的方法来实现
+
+### V1
+
+```java
+/**
+ * 读取Class 字节
+ * 只有读取 class 字节功能，没有加载功能
+ */
+public class ClassReaderUtil {
+    private ClassReaderUtil() {
+    }
+
+
+    /**
+     * 读取类文件
+     *
+     * @param className class 文件的全限定名
+     * @param classPath class 存在的路径，可以是一个具体文件夹路径，也可以是一个Jar 路径
+     * @return class 字节数组
+     */
+    public static byte[] readClassBytes(String className, String classPath) throws IOException {
+        return readClassBytes(className, new String[]{classPath}, false);
+    }
+
+    /**
+     * 读取类文件
+     *
+     * @param className        class 文件的全限定名
+     * @param classPaths       class 存在的路径，可以是一个具体文件夹路径，也可以是一个Jar 路径。如果类在这些路径中都存在，则只返回一个
+     * @param isFindSTDClasses 如果在第三方jar中没有找到，是否去标准库中找。注意：如果是类加载器加载类，一定要设置为false
+     * @return class 字节数组
+     */
+    public static byte[] readClassBytes(String className, String[] classPaths, boolean isFindSTDClasses) throws IOException {
+        // Search for the class in the given classpath
+        byte[] bytes = null;
+        if (classPaths != null) for (String path : classPaths) {
+            if (bytes != null && bytes.length != 0) break;
+            if (path.toLowerCase().endsWith(".jar")) {
+                // The class is in a JAR file
+                bytes = readClassBytesFromJar(new File(path), className);
+            } else {
+                // The class is in a directory
+                //当前路径加上类全限定名来判断文件是否存在，存在则加载，否则则忽略
+                File classFile = new File(path, className.replace('.', File.separatorChar) + ".class");
+                bytes = readClassBytesFromFile(classFile);
+            }
+        }
+        //如果没有在第三方Jar中就去标准库中找
+        if (bytes == null || bytes.length == 0) {
+            if (!isFindSTDClasses) throw new IOException("无法在路径下读取到class文件: " + className);
+            else
+                bytes = readStream(ClassLoader.getSystemResourceAsStream(className.replace('.', '/') + ".class"), true);
+        }
+        //没有找到任何Class
+        if (bytes == null || bytes.length == 0) throw new IOException("无法在路径下读取到class文件且标准类库中也无法找到类: " + className);
+       return bytes;
+    }
+
+    private static byte[] readStream(final InputStream inputStream, final boolean close)
+            throws IOException {
+        if (inputStream == null) {
+            return null;
+        }
+        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+            byte[] data = new byte[1024];
+            int bytesRead;
+            int readCount = 0;
+            while ((bytesRead = inputStream.read(data, 0, 1024)) != -1) {
+                outputStream.write(data, 0, bytesRead);
+                readCount++;
+            }
+            outputStream.flush();
+            if (readCount == 1) {
+                return data;
+            }
+            return outputStream.toByteArray();
+        } finally {
+            if (close) {
+                inputStream.close();
+            }
+        }
+    }
+
+    /**
+     * 从文件中读取字节
+     *
+     * @param classFile class 文件对象
+     */
+    private static byte[] readClassBytesFromFile(File classFile) throws IOException {
+        try (InputStream in = Files.newInputStream(classFile.toPath());
+             BufferedInputStream bis = new BufferedInputStream(in);
+             ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = bis.read(buffer)) != -1) {
+                out.write(buffer, 0, bytesRead);
+            }
+            return out.toByteArray();
+        }
+    }
+
+    /**
+     * 从JAR文件中读取类的字节码
+     *
+     * @param jarFile   jar 路径
+     * @param className class 全限定名
+     */
+    private static byte[] readClassBytesFromJar(File jarFile, String className) throws IOException {
+        try (JarFile jar = new JarFile(jarFile)) {
+            JarEntry entry = jar.getJarEntry(className.replace('.', '/') + ".class");
+            if (entry == null) {
+//                throw new IOException("无法在jar中读取到class文件: jar:" + jarFile + File.separator + "!" + className);
+                return null;
+            }
+            try (InputStream in = jar.getInputStream(entry);
+                 BufferedInputStream bis = new BufferedInputStream(in);
+                 ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = bis.read(buffer)) != -1) {
+                    out.write(buffer, 0, bytesRead);
+                }
+                return out.toByteArray();
+            }
+        }
+    }
+}
+
+```
+
+### V2
+
+```java
+/**
+ * 读取Class 字节
+ * 只有读取 class 字节功能，没有加载功能
+ */
+public class ClassReaderUtil {
+    private ClassReaderUtil() {
+    }
+
+
+    /**
+     * 读取类文件
+     *
+     * @param className class 文件的全限定名
+     * @param classPath class 存在的路径，可以是一个具体文件夹路径，也可以是一个Jar 路径
+     * @return class 字节数组
+     */
+    public static byte[] readClassBytes(String className, String classPath) throws IOException {
+        return readClassBytes(className, new String[]{classPath}, false);
+    }
+
+    /**
+     * 读取类文件
+     *
+     * @param className        class 文件的全限定名
+     * @param classPaths       class 存在的路径，可以是一个具体文件夹路径，也可以是一个Jar 路径。如果类在这些路径中都存在，则只返回一个
+     * @param isFindSTDClasses 如果在第三方jar中没有找到，是否去标准库中找
+     * @return class 字节数组
+     */
+    public static byte[] readClassBytes(String className, String[] classPaths, boolean isFindSTDClasses) throws IOException {
+        // Search for the class in the given classpath
+        byte[] bytes = null;
+        if (classPaths != null) for (String path : classPaths) {
+            if (bytes != null && bytes.length != 0) break;
+            if (path.toLowerCase().endsWith(".jar")) {
+                // The class is in a JAR file
+                bytes = readClassBytesFromJar(new File(path), className);
+            } else {
+                // The class is in a directory
+                //当前路径加上类全限定名来判断文件是否存在，存在则加载，否则则忽略
+                File classFile = new File(path, className.replace('.', File.separatorChar) + ".class");
+                bytes = readClassBytesFromFile(classFile);
+            }
+        }
+        //如果没有在第三方Jar中就去标准库中找
+        if (bytes == null || bytes.length == 0) {
+            if (!isFindSTDClasses) throw new IOException("无法在路径下读取到class文件: " + className);
+            else
+                bytes = readStream(ClassLoader.getSystemResourceAsStream(className.replace('.', '/') + ".class"), true);
+        }
+        //没有找到任何Class
+        if (bytes == null || bytes.length == 0)
+            throw new IOException("无法在路径下读取到class文件且标准类库中也无法找到类: " + className);
+        return bytes;
+    }
+
+    private static byte[] readStream(final InputStream inputStream, final boolean close)
+            throws IOException {
+        if (inputStream == null) {
+            return null;
+        }
+        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+            byte[] data = new byte[1024];
+            int bytesRead;
+            int readCount = 0;
+            while ((bytesRead = inputStream.read(data, 0, 1024)) != -1) {
+                outputStream.write(data, 0, bytesRead);
+                readCount++;
+            }
+            outputStream.flush();
+            if (readCount == 1) {
+                return data;
+            }
+            return outputStream.toByteArray();
+        } finally {
+            if (close) {
+                inputStream.close();
+            }
+        }
+    }
+
+    /**
+     * 从文件中读取字节
+     *
+     * @param classFile class 文件对象
+     */
+    private static byte[] readClassBytesFromFile(File classFile)   {
+        try (InputStream in = Files.newInputStream(classFile.toPath());
+             BufferedInputStream bis = new BufferedInputStream(in);
+             ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = bis.read(buffer)) != -1) {
+                out.write(buffer, 0, bytesRead);
+            }
+            return out.toByteArray();
+        }catch (IOException e){
+            return null;
+        }
+    }
+
+    /**
+     * 从JAR文件中读取类的字节码
+     *
+     * @param jarFile   jar 路径
+     * @param className class 全限定名
+     */
+    private static byte[] readClassBytesFromJar(File jarFile, String className) {
+        try (JarFile jar = new JarFile(jarFile)) {
+            JarEntry entry = jar.getJarEntry(className.replace('.', '/') + ".class");
+            if (entry == null) {
+//                throw new IOException("无法在jar中读取到class文件: jar:" + jarFile + File.separator + "!" + className);
+                return null;
+            }
+            try (InputStream in = jar.getInputStream(entry);
+                 BufferedInputStream bis = new BufferedInputStream(in);
+                 ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = bis.read(buffer)) != -1) {
+                    out.write(buffer, 0, bytesRead);
+                }
+                return out.toByteArray();
+            }
+        }catch (IOException e) {
+            return null;
+        }
+    }
+}
+
+```
+
+
+
+## 6. 加载其他Jar ，使用Jdk里面的类加载器
+
+```
+URLClassLoader classLoader = new URLClassLoader(new URL[] { new URL("file:///path/to/jar1.jar"), new URL("file:///path/to/jar2.jar") });
+```
+
+# QA
+
+1. 如果自定义类引用了其他类会通过什么类加载器加载
+
+> Q: java 中 在自定义实现的类加载器加载jar中一个类后，并调用这个类的方法，那么如果这个类的方法引用了jar中其他类，那么其他类将会经过什么类加载器加载
+>
+> A: 当一个类被一个自定义类加载器加载后，如果这个类的方法引用了Jar中的其他类，那么这些其他类将会由同一个自定义类加载器来加载。这是因为Java中的类加载器都是按照“双亲委派模型”工作的，即当一个类加载器需要加载一个类时，它会先委派给其父类加载器去尝试加载。如果父类加载器无法加载该类，那么这个类加载器才会自己尝试加载该类。
+>
+> 在自定义实现的类加载器中，我们可以通过重写findClass方法来实现自己的类加载逻辑。如果需要加载其他类，我们可以使用相同的类加载器来加载这些类，或者在自定义类加载器中实现逻辑来委派给其他类加载器加载。具体实现方法可以根据具体情况来决定。
+
+2. 自定义类加载器是否会缓存类，是否会更新class
+
+> Q: java 中 在自定义实现的类加载器加载我的jar中一个类，该类是否被缓存
+>
+> A: Java中自定义的类加载器在加载类时，通常会使用缓存来提高加载效率。当自定义的类加载器加载jar中的一个类时，如果该类已经被加载过，那么这个类加载器就会从缓存中获取Class对象，而不是重新读取和解析class文件。
+>
+> 需要注意的是，如果jar中的类文件发生了变化，缓存中的Class对象就会失效。此时，类加载器会重新加载该类文件，并且更新缓存中的Class对象。因此，如果你在开发过程中频繁修改jar中的类文件，建议使用动态类加载器，避免缓存带来的影响。
+>
+> 需要注意的是，Java中的类加载器默认使用的是双亲委派模型，即当一个类加载器需要加载一个类时，它会先委派给其父类加载器去尝试加载。如果父类加载器无法加载该类，那么这个类加载器才会自己尝试加载该类。因此，如果你在自定义的类加载器中加载的类与父类加载器已经加载过的类相同，那么这个类也会从父类加载器的缓存中获取Class对象，而不是重新读取和解析class文件。
+>
+> 
+>
+> Q: 上述描述中 '类加载器会重新加载该类文件，并且更新缓存中的Class对象。' java是如何知道class被更改
+>
+> A: Java中的类加载器在加载类时，会检查类文件的最后修改时间来判断类文件是否发生了变化。如果发现类文件的最后修改时间比加载时缓存中的时间要晚，那么类加载器就会重新读取和解析class文件，并且更新缓存中的Class对象。
+>
+> 具体来说，Java中的类加载器通常会使用java.net.URLClassLoader类或其子类来加载类，这些类加载器会通过URL来定位和加载类文件。当类加载器需要重新加载类时，它会先检查类文件的最后修改时间，如果发现类文件的最后修改时间比加载时缓存中的时间要晚，就会重新读取和解析class文件，然后更新缓存中的Class对象。
+>
+> 需要注意的是，当使用自定义的类加载器来加载类时，可能需要手动实现类文件的变化检查逻辑。具体实现方式可以根据具体情况来决定，例如可以在类加载器中记录类文件的最后修改时间，或者通过其他方式来判断类文件是否发生了变化。

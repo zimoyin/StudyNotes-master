@@ -2,7 +2,7 @@
 
 文章地址:  https://www.cnblogs.com/gzj03/p/14425860.html
 
-注意如果不清除格式那么他会一直使用
+注意如果不清除格式那么他会一直使用。该数字不局限于一下几种
 
 ```java
         System.out.println("前景色");

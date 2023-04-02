@@ -294,3 +294,9 @@ Enter a number, leave blank to not to change: 6
 **设置字体**
 
 运行 `chfont` 命令更换字体，或者执行 `~/.termux/fonts.sh` 命令
+
+
+
+## 防止被清理后台
+
+termux-wake-lock
