@@ -1439,7 +1439,8 @@ public class FindClass {
                 //如果是class文件就放入集合
                 try {
                     String classPath = jarEntry.getName().replaceAll("/", "\\.");
-                    if (classPath.lastIndexOf(".") == classPath.length() - 1) continue;
+                    int prx = classPath.lastIndexOf(".");
+                    if (prx == classPath.length() - 1 || prx < 0) continue;
                     String lastName = classPath.substring(classPath.lastIndexOf("."));
                     if (lastName.equals(".class"))
                         classNames.add(classPath.substring(0, classPath.lastIndexOf(".")));//去掉.class后缀
@@ -1559,7 +1560,7 @@ public InputStream getResourceAsStream(String name) {
 
 * 访问到的静态变量是在对象A下的静态变量，如果插件中的静态变量值变量被修改那么对象A是无法访问到静态变量修改后的值
 
-## 5. 自定义类加载器：jar 与 class 都能加载
+## 5. 自定义类加载器：jar 与 class 都能被读取
 
 将 三和四的案例中 `getClassBytes` 方法改为引用以下类的方法来实现
 

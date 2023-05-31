@@ -622,6 +622,14 @@ fun test(): (String)->String {
 
 
 
+### 11. 内置函数
+
+#### 11.1 let
+
+#### 11.2  apple
+
+#### 11.3 task
+
 ## 八、Null
 
 > 为了避免java中经常出现的NullPointerException问题，[Kotlin](https://so.csdn.net/so/search?q=Kotlin&spm=1001.2101.3001.7020)引入了对null的控制。让开发者在在开发时去重视这个问题
@@ -745,5 +753,9 @@ print(str2)
 ```
 
 
+
+
+
+## 十、类的初始化
 
 ​	
