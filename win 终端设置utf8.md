@@ -1,0 +1,1 @@
+在设置里面新建配置，启动参数为 `%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe -NoExit chcp 65001`
