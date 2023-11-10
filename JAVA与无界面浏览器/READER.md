@@ -85,10 +85,36 @@ User : selenium 是无头浏览器吗，和Headless Chrome是什么关系，他�
 
 #### 2.1.1 安装Chrome
 
-Windows : 直接在 Chrome 官网下载
+Windows : 直接在 ~~[Chrome](https://www.google.cn/chrome/index.html)~~/[Chromium ](https://chromiumdash.appspot.com/schedule) 官网下载。推荐使用 Chromium  开箱即用。
+
+历史版本: 
+
+* [Chromium历史版本第三方版本统计](https://vikyd.github.io/download-chromium-history-version/#/): 基本包括驱动版本
+* [官方历史快照版](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html): 基本包括驱动版本
+  1. 选择您的平台：Mac、Win、Linux、ChromiumOS
+  2. 选择您想要使用的 Chromium 内部版本号
+     1. `LAST_CHANGE`文件中提到了最新的
+  3. 下载包含 Chromium 的 zip 文件
+  4. 里面有一个二进制可执行文件可以运行
+
+如何指定打开的浏览器，而不是默认的浏览器 :  
+
+1. 通过将驱动放在你浏览器所在的文件夹内，并设置 `System.setProperty("webdriver.chrome.driver","驱动地址");` 即可
+2. 通过代码进行设置
+
+```java
+System.setProperty("webdriver.chrome.driver","bin path:驱动地址")
+ChromeOptions options = new ChromeOptions();
+options.setBinary("bin path: 浏览器的执行文件");
+ebDriver driver = new ChromeDriver(options);
+```
+
+
+
+
 
 ----
-linux： 请百度，我使用的是Ubuntu 所以我直接百度的 Ubuntu Server 安装 Chrome
+**linux： 请百度，我使用的是Ubuntu 所以我直接百度的 Ubuntu Ser ver 安装 Chrome**
 
 -----
 
@@ -196,6 +222,7 @@ https://blog.csdn.net/erhuobuer/article/details/108680617
 
 ```java
 //驱动地址: 如果不设置环境变量则需要设置驱动地址
+//如果想要打开特点的浏览器，就把驱动放在那个浏览器的所在文件夹内，比如要打开Chromium 就放在 Chromium 的文件夹内
 System.setProperty("webdriver.chrome.driver","/chromedriver");
 // 设置驱动
 ChromeOptions options=new ChromeOptions();
@@ -329,6 +356,7 @@ DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 
 // 使用 DesiredCapabilities 对象创建 ChromeDriver
+// 也可以使用 options 直接设置
 WebDriver driver = new ChromeDriver(capabilities);
 
 // 访问网站
@@ -1272,3 +1300,82 @@ driver.get("https://baidu.com");
 driver.quit();
 System.out.println(System.currentTimeMillis() - start)
 ```
+
+
+
+
+
+
+
+## 5. 通过 javet 使用 puppeteer
+
+### 1. 环境搭建
+
+* 导入包
+
+```xml
+    <!-- Linux and Windows (x86_64) -->
+        <dependency>
+            <groupId>com.caoccao.javet</groupId>
+            <artifactId>javet</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        <!-- Linux (arm64) -->
+        <dependency>
+            <groupId>com.caoccao.javet</groupId>
+            <artifactId>javet-linux-arm64</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        <!-- Mac OS (x86_64 and arm64) -->
+        <dependency>
+            <groupId>com.caoccao.javet</groupId>
+            <artifactId>javet-macos</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+```
+
+* 安装 node
+* 安装 puppeteer 库
+
+```shell
+ npm install puppeteer
+```
+
+
+
+### 2. 使用
+
+```kotlin
+    V8Host.getNodeInstance().createV8Runtime<V8Runtime>().use{ v8Runtime ->
+        v8Runtime.getExecutor("""
+                        (async function (){
+                         let a = 0;
+                            while (a<=50) {
+                            const puppeteer = require('puppeteer');
+                            const browser = await puppeteer.launch({ headless: 'new' }); // 使用新的 Headless 模式
+                            const page = await browser.newPage();
+                            await page.goto('https://www.baidu.com', { waitUntil: 'networkidle0' });
+            //                const title = await page.title(); // 直接获取页面标题
+            //                console.log(title);
+                            await page.screenshot({ path: 'example.png' });
+                            await browser.close();
+                            a++
+                            }
+                        })();
+        """.trimIndent()).executeVoid()
+    }
+```
+
+
+
+### 3.  优缺点分析
+
+~~总结：脱裤子放屁，多此一举~~
+
+* 易于使用： 使用js 编写的代码
+
+* 可能存在的性能优势
+* 简洁的API
+* ~~吹不下去了~~
