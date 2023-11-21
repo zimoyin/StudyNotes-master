@@ -53,10 +53,10 @@
 
 - **Headless Chrome**： Google推出的无头浏览器，可以模拟Chrome浏览器的所有功能，包括JavaScript解析、HTML解析、CSS解析等。
 - Selenium ： **并不是一个无头浏览器**，而是一个浏览器自动化测试工具，这个通常会被搞混，他可以通过驱动程序来自动化操作对应的浏览器。Selenium可以支持多款主流浏览器，包括Chrome、Firefox、Safari等。同时 Selenium还支持浏览器的无头模式，比如Firefox、PhantomJS、Chrome的无头模式（Headless）等
-- Puppeteer： Google开发的一个Node.js库，用于控制Headless Chrome，可以模拟用户操作、截屏、生成PDF等。
+- **Puppeteer**： Google开发的一个Node.js库，用于控制Headless Chrome，可以模拟用户操作、截屏、生成PDF等。
 - PhantomJS：一个已经停止维护的无头浏览器，但仍然被很多人使用，可以模拟浏览器的行为，支持JavaScript解析和网页截屏等。
 - Playwright： Microsoft开发的一个Node.js库，可以控制多个浏览器，包括Chrome、Firefox和Safari等，可以模拟用户操作、截屏、生成PDF等。
-- Splash：一个基于Python的无头浏览器，可以解析JavaScript、渲染网页、截屏等，可以通过HTTP API进行控制。
+- **Splash**：一个基于Python的无头浏览器，可以解析JavaScript、渲染网页、截屏等，可以通过HTTP API进行控制。
 
 - **HtmlUnit**: 一款基于Java的开源无头浏览器，它可以模拟浏览器行为并执行JavaScript代码。它可以与JUnit和TestNG等测试框架集成，用于自动化测试和Web爬虫等任务。
 - JBrowserDriver: 一款基于Selenium WebDriver的无头浏览器，它使用Java Swing库模拟浏览器界面。它可以模拟用户行为，进行自动化测试和Web爬虫等任务。然而，由于它使用了Java Swing库，因此可能需要更多的资源。
@@ -958,7 +958,7 @@ WebDriver driver = new FirefoxDriver(profile);
 
 ## 3. HtmlUnit
 
-HtmlUnit 是一个Java 写的 内存浏览器，他没有界面所以对于具体的浏览器方法在此内存浏览器上无法使用，比如截图等。
+HtmlUnit 是一个Java 写的 内存浏览器，他没有界面所以对于具体的浏览器方法在此内存浏览器上无法使用，比如截图等。HtmlUnit  相对于 Chrome 的无头浏览器他的性能以及对复杂 js 的处理是底下的，但是因为是由java 模拟的浏览器，所以对 java 天生上拥有方便集成与使用的特点
 
 
 
@@ -1194,7 +1194,7 @@ DomElement name = page.getElementByName("name");//根据元素的 name 属性值
 HtmlForm formByName = page.getFormByName("name");//根据元素的 name 属性值获取一个表单
 HtmlInput inputByName = formByName.getInputByName("name");
 HtmlElement elementFromPoint = page.getElementFromPoint(0, 0);//通过X、Y获取在该网页位置上的元素
-List<Object> xpath = page.getByXPath("//div[@class='myClass']");//Xpath 类选择器 通过元素的 class 属性获取元素
+List<Object> xpath = page.getByXPath("//div[@class='myClass']");//Xpath 类选择器 通过元素的 class 属性获取元素 [推荐使用]
 
 ```
 
@@ -1222,6 +1222,48 @@ search.setAttribute("value","你知道什么吗，比如JAVA");
 DomElement button = page.getElementById("su");
 button.click();
 ```
+
+#### 2.  通过 class 来搜索
+
+```ko
+/**
+ * 工具方法: 查询该节点下的所有class为 @classes 的 DomElement
+ */
+fun org.w3c.dom.Node.getElementsByClass(classes: String): ArrayList<DomElement> {
+    val list = ArrayList<DomElement>()
+
+    val classList = classes.let {
+        classes.split(Regex("\\s+")).map {
+            it.trim()
+        }
+    }
+    // 遍历子节点
+    for (i in 0..<childNodes.length) {
+        val childNode = childNodes.item(i)
+
+        if (childNode.nodeType == Node.ELEMENT_NODE) {
+            val element = childNode as DomElement
+            val elementClasses = element.getAttribute("class").split(Regex("\\s+")).map {
+                it.trim()
+            }
+
+            if (elementClasses.containsAll(classList)) {
+                list.add(element)
+            }
+        }
+        list += childNode.getElementsByClass(classes)
+    }
+    return list
+}
+```
+
+
+
+#### 3. 节点交互
+
+如单击/右键/选择/拖拽等，这里不一一表述了
+
+
 
 ## 4. Selenium+HtmlUnit
 
