@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-outlined</title>
+    <g id="icon-outlined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FFFFFF" x="0" y="0" width="48" height="48"></rect>
+        <path d="M32,12 L32,8 C32,5.78 30.22,4 28,4 L20,4 C17.78,4 16,5.78 16,8 L16,12 L4,12 L4,38 C4,40.22 5.78,42 8,42 L40,42 C42.22,42 44,40.22 44,38 L44,12 L32,12 Z M20,8 L28,8 L28,12 L20,12 L20,8 Z M40,38 L8,38 L8,16 L40,16 L40,38 Z M18,36 L33,26 L18,18 L18,36 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>
