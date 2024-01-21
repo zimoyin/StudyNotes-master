@@ -87,6 +87,7 @@ fun ImageForResources(
 >    * 返回类型为 ImageVector : 不可以直接使用。你需要转换为Painter
 >
 >      * ```kotlin
+>        // rememberVectorPainter 主要代码
 >        VectorPainter().apple{ 
 >        	val image = imageVector
 >        	val density = LocalDensity.current
@@ -834,6 +835,73 @@ fun MainPage1() {
             Text("My minHeight is $maxHeight while my maxWidth is $maxWidth")
         }
     }
+}
+```
+
+
+
+
+
+### 3.9 对齐
+
+布局组件可以使用 `verticalArrangement` 或者 `horizontalAlignment` 进行垂直和水平的布局
+
+其他组件需要使用 `modifier` 的 `align` 进行。
+
+需要注意的是，在 modifier 中布局需要根据控件所在的布局的类型进行适当的调整
+
+**另外需要注意"Arrangement"和"Alignment"的区别**
+
+### 3.9.1 Row
+
+```kotlin
+Row(modifier = Modifier.fillMaxWidth(),            
+    horizontalArrangement = Arrangement.Center,//设置水平居中对齐
+    verticalAlignment =  Alignment.CenterVertically//设置垂直居中对齐
+   ) {
+    Text(text = "text控件")
+    Text(text = "text控件")
+}
+
+```
+
+
+
+### 3.9.2 Column
+
+```kotlin
+Column(
+    modifier = modifier().fillMaxSize(),
+    verticalArrangement = Arrangement.Center,
+    horizontalAlignment = Alignment.CenterHorizontally
+
+) {
+    //
+    Text("无任何组件", modifier = modifier().align(alignment = Alignment.CenterHorizontally))
+}
+```
+
+
+
+### 3.9.3 其他组件示例
+
+1. 垂直布局Column 进行水平居中
+
+```kotlin
+Column(Modifier.fillMaxWidth()) {
+    Text(text = "text控件",modifier = Modifier.align(alignment = Alignment.CenterHorizontally))
+    Text(text = "text控件",modifier = Modifier.align(alignment = Alignment.CenterHorizontally))
+}
+
+```
+
+2. 水平布局Row 进行垂直居中
+
+```kotlin
+Row{
+    Text("无任何组件", modifier = modifier().align(alignment = Alignment.CenterVertically))
+    //错误的，在 Row 布局中不能使用 Column 的对其属性
+    Text("无任何组件", modifier = modifier().align(alignment = Alignment.CenterHorizontally))
 }
 ```
 
@@ -2797,7 +2865,19 @@ Material Design 模态底板。
 
 `Divider` 是一个用于在 UI 中插入分隔线的组件。它可以在布局中水平或垂直地添加一条分隔线，以分隔不同部分或元素。`Divider` 主要用于创建一些视觉上的分隔效果，使界面更加清晰。
 
-在 Row 中是竖线，在 Colum 中是横线
+在在 Colum 中是横线，在Row 中需要进行配置样式
+
+```kotlin
+// 竖线
+Divider(
+    modifier = Modifier
+    .fillMaxHeight()
+    .width(1.dp)
+    .background(Color.Gray)
+)
+```
+
+
 
 
 
@@ -6953,7 +7033,7 @@ fun Modifier.moveFocusOnTab() = composed {
 
 ## 17. Navigation
 
-Jetpack [Compose 导航库](https://developer.android.com/jetpack/compose/navigation)目前是仅适用于 Android 的库。但是目前个人开发了个简易的导航库
+Jetpack [Compose 导航库](https://developer.android.com/jetpack/compose/navigation)目前是仅适用于 Android 的库。但是目前个人开发了个简易的导航库 请见 [nav](nav) 文件夹。使用示例请见 [example](nav%2Fexample)
 
 ## 18. Swing 互操作性
 
