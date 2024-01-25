@@ -12,6 +12,16 @@ Compose Multiplatform 是 JetBrains 为桌面平台（macOS，Linux，Windows）
 * 响应式布局: https://juejin.cn/post/7307838693145903138?searchId=20240113204911F202EF8610E9B5E697D6
 * compose 中文教程: https://jetpackcompose.cn/docs/
 
+如何构建工程:
+
+1. 使用 IDEA 的 Compose-Multiplatform
+2. 使用[网站引导](https://kmp.jetbrains.com/)，他可以构建多个平台的compose
+
+工程示例:
+
+1. 菜谱[APP](https://github.com/SEAbdulbasit/recipe-app)多端应用 （Android Studio）
+2. IDEA中[多端环境](https://juejin.cn/post/7103085706674700318)
+
 
 
 # 一、笔记
