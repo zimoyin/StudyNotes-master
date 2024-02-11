@@ -22,6 +22,12 @@ Compose Multiplatform 是 JetBrains 为桌面平台（macOS，Linux，Windows）
 1. 菜谱[APP](https://github.com/SEAbdulbasit/recipe-app)多端应用 （Android Studio）
 2. IDEA中[多端环境](https://juejin.cn/post/7103085706674700318)
 
+文章:
+
+1. [MVI](https://juejin.cn/post/7141269750277439496) 架构
+2. [Compose](https://juejin.cn/post/7176437908935540797) 为什么可以跨平台
+3. 
+
 
 
 # 一、笔记
@@ -7043,7 +7049,11 @@ fun Modifier.moveFocusOnTab() = composed {
 
 ## 17. Navigation
 
-Jetpack [Compose 导航库](https://developer.android.com/jetpack/compose/navigation)目前是仅适用于 Android 的库。但是目前个人开发了个简易的导航库 请见 [nav](nav) 文件夹。使用示例请见 [example](nav%2Fexample)
+1. Jetpack [Compose 导航库](https://developer.android.com/jetpack/compose/navigation)目前是仅适用于 Android 的库。
+2. 但是目前个人开发了个简易的导航库 请见 [nav](nav) 文件夹。使用示例请见 [example](nav%2Fexample)
+
+3. 其他库 请查询 [**Decompose**](https://github.com/arkivanov/Decompose) (核心思想就是：UI 和业务逻辑和导航逻辑三者严格分离。需要一定学习成本)
+4. [PreCompose](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2FTlaster%2FPreCompose) 是一个 Kotlin Multiplatform 库，目的是为了让 Kotlin 开发者能够像 Flutter 那样只需要写一套业务逻辑代码和一套 Compose UI 代码就可以在各个平台上运行，同时还能用上大家熟悉的 ViewModel 和 Navigation，目前支持 Android/iOS/Dekstop。
 
 ## 18. Swing 互操作性
 
