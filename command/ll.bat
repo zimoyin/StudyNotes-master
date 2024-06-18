@@ -1,5 +1,6 @@
 :: alias 
 @echo off 
+setlocal enabledelayedexpansion
 
 :: 设置保存路径
 set savePath=%~dp0
@@ -17,4 +18,4 @@ for %%i in (%*) do (
     )
 )
 
-%savePath%ls.exe
+%savePath%ls.exe %params%
