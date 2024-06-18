@@ -1417,7 +1417,14 @@ System.out.println(System.currentTimeMillis() - start)
 ~~总结：脱裤子放屁，多此一举~~
 
 * 易于使用： 使用js 编写的代码
-
 * 可能存在的性能优势
 * 简洁的API
 * ~~吹不下去了~~
+
+
+
+## 6. jvppeteer
+
+这是一个Java库，灵感来自于Puppeteer (Node.js)，API与其基本上保持一致。它通过DevTools控制Chromium或Chrome，可以在浏览器中手动执行的绝大多数操作都可以使用jvppeteer来完成。
+
+* 集成式API，不需要手动下载浏览器，驱动，selenium 并考虑他们之间的版本关系了

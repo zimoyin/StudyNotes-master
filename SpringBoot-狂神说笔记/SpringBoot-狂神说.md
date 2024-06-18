@@ -2016,7 +2016,7 @@ public String test2(Map<String,Object> map){
 
 地址 ：https://docs.spring.io/spring-boot/docs/2.2.5.RELEASE/reference/htmlsingle/#boot-features-spring-mvc-auto-configuration
 
-```
+```java
 
 Spring MVC Auto-configuration
 // Spring Boot为Spring MVC提供了自动配置，它可以很好地与大多数应用程序一起工作。

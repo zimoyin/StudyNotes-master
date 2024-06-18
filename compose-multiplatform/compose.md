@@ -7050,10 +7050,10 @@ fun Modifier.moveFocusOnTab() = composed {
 ## 17. Navigation
 
 1. Jetpack [Compose 导航库](https://developer.android.com/jetpack/compose/navigation)目前是仅适用于 Android 的库。
-2. 但是目前个人开发了个简易的导航库 请见 [nav](nav) 文件夹。使用示例请见 [example](nav%2Fexample)
-
-3. 其他库 请查询 [**Decompose**](https://github.com/arkivanov/Decompose) (核心思想就是：UI 和业务逻辑和导航逻辑三者严格分离。需要一定学习成本)
-4. [PreCompose](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2FTlaster%2FPreCompose) 是一个 Kotlin Multiplatform 库，目的是为了让 Kotlin 开发者能够像 Flutter 那样只需要写一套业务逻辑代码和一套 Compose UI 代码就可以在各个平台上运行，同时还能用上大家熟悉的 ViewModel 和 Navigation，目前支持 Android/iOS/Dekstop。
+2. 但是目前个人开发了个**简易的导航库** 请见 [nav](nav) 文件夹。使用示例请见 [example](nav%2Fexample)
+3.  [**Decompose**](https://github.com/arkivanov/Decompose) ：（支持导航）UI 和业务逻辑和导航逻辑三者严格分离。需要一定学习成本
+4. [PreCompose](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2FTlaster%2FPreCompose)：  是一个 Kotlin Multiplatform 库，目的是为了让 Kotlin 开发者能够像 Flutter 那样只需要写一套业务逻辑代码和一套 Compose UI 代码就可以在各个平台上运行，同时还能用上大家熟悉的 ViewModel 和 Navigation，目前支持 Android/iOS/Dekstop。
+5. [Voyager](https://github.com/adrielcafe/voyager) ： [专为Jetpack Compose](https://developer.android.com/jetpack/compose)构建并与 Jetpack Compose 无缝集成的**多平台**导航库。
 
 ## 18. Swing 互操作性
 
