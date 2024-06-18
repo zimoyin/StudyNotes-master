@@ -1,0 +1,3 @@
+:: alias 
+@echo off 
+ipconfig 
