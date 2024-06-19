@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 
 :: 检查参数数量
 if "%~1"=="" (
-    echo 用法: run.bat 文件名
+    echo 用法: run.bat 文件名 [参数...]
     goto end
 )
 
@@ -11,26 +11,36 @@ if "%~1"=="" (
 set "filename=%~1"
 set "extension=%~x1"
 
+:: 获取所有传递的参数，排除第一个参数（文件名）
+set "params="
+shift
+:parseParams
+if "%~1"=="" goto endParseParams
+set "params=!params! %~1"
+shift
+goto parseParams
+:endParseParams
+
 :: 根据扩展名调用对应的程序
 if /I "%extension%"==".py" (
-    python "%filename%"
+    python "%filename%" !params!
     goto end
 )
 
 if /I "%extension%"==".jar" (
-    java -jar "%filename%"
+    java -jar "%filename%" !params!
     goto end
 )
 
 if /I "%extension%"==".class" (
-    java "%~n1"
+    java "%~n1" !params!
     goto end
 )
 
 if /I "%extension%"==".java" (
     javac "%filename%"
     if exist "%~n1.class" (
-        java "%~n1"
+        java "%~n1" !params!
         del "%~n1.class"
     ) else (
         echo 编译失败，未找到 %~n1.class 文件
@@ -39,12 +49,12 @@ if /I "%extension%"==".java" (
 )
 
 if /I "%extension%"==".bat" (
-    call "%filename%"
+    call "%filename%" !params!
     goto end
 )
 
 if /I "%extension%"==".cmd" (
-    call "%filename%"
+    call "%filename%" !params!
     goto end
 )
 
@@ -60,14 +70,14 @@ if "%filename%"==".idea" (
 )
 
 if /I "%extension%"==".exe" (
-    "%filename%"
+    "%filename%" !params!
     goto end
 )
 
 if /I "%extension%"==".kt" (
     kotlinc "%filename%" -include-runtime -d "%~n1.jar"
     if exist "%~n1.jar" (
-        java -jar "%~n1.jar"
+        java -jar "%~n1.jar" !params!
         del "%~n1.jar"
     ) else (
         echo 编译失败，未找到 %~n1.jar 文件
@@ -76,19 +86,31 @@ if /I "%extension%"==".kt" (
 )
 
 if /I "%extension%"==".kts" (
-    kotlinc -script "%filename%"
+    kotlinc -script "%filename%" !params!
     goto end
 )
 
 if /I "%extension%"==".ps1" (
-    powershell -ExecutionPolicy Bypass -File "%filename%"
+    powershell -ExecutionPolicy Bypass -File "%filename%" !params!
     goto end
 )
 
 if /I "%extension%"==".c" (
     gcc "%filename%" -o "%~n1" || tcc "%filename%" -o "%~n1"
     if exist "%~n1.exe" (
-        "%~n1.exe"
+        "%~n1.exe" !params!
+        del "%~n1.exe"
+    ) else (
+        echo 编译失败，未找到 %~n1.exe 文件
+    )
+    goto end
+)
+
+
+if /I "%extension%"==".cpp" (
+    gcc "%filename%" -o "%~n1" || tcc "%filename%" -o "%~n1"
+    if exist "%~n1.exe" (
+        "%~n1.exe" !params!
         del "%~n1.exe"
     ) else (
         echo 编译失败，未找到 %~n1.exe 文件
@@ -97,24 +119,24 @@ if /I "%extension%"==".c" (
 )
 
 if /I "%extension%"==".go" (
-    go run "%filename%"
+    go run "%filename%" !params!
     goto end
 )
 
 if /I "%extension%"==".js" (
-    node "%filename%"
+    node "%filename%" !params!
     goto end
 )
 
 if /I "%extension%"==".ts" (
-    ts-node "%filename%"
+    ts-node "%filename%" !params!
     goto end
 )
 
 if /I "%extension%"==".rs" (
     rustc "%filename%"
     if exist "%~n1.exe" (
-        "%~n1.exe"
+        "%~n1.exe" !params!
         del "%~n1.exe"
     ) else (
         echo 编译失败，未找到 %~n1.exe 文件
@@ -155,7 +177,6 @@ if exist "%filename%\" (
     goto end
 )
 
-
 :: 对于其他扩展名，询问是否使用默认应用程序打开
 echo 该文件类型没有指定的运行方式。是否使用默认应用程序打开 %filename%? (y/n)
 set /p choice=
@@ -178,9 +199,11 @@ if /I "%choice%"=="y" (
         goto end
     ) else (
         start "" "%filename%"
+        goto end
     )
 ) else (
     echo 已取消操作
+    goto end
 )
 
 :run

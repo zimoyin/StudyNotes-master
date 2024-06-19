@@ -18,4 +18,4 @@ for %%i in (%*) do (
     )
 )
 
-%savePath%ls.exe %params%
+%savePath%ls.exe -rn %params%

@@ -10,9 +10,12 @@ import (
 	"sort"
 	"strconv"
 	"syscall"
+	"strings"
+	"unsafe"
 )
 
 var (
+	rn         = flag.Bool("rn", false, "Ls will try to output results on one line as much as possible")
 	all        = flag.Bool("a", false, "display all files including hidden files")
 	allExcept  = flag.Bool("A", false, "display all files excluding '.' and '..'")
 	longFormat = flag.Bool("l", false, "use a long listing format")
@@ -32,7 +35,6 @@ var (
 	byColumn   = flag.Bool("C", false, "[Not implemented] list entries by columns")
 	noColor    = flag.Bool("noColor", false, "never show color")
 	fullTime   = flag.Bool("full-time", false, "like -l --time-style=full-iso")
-	help       = flag.Bool("&help", false, "-help view help")
 	depth      = 0
 )
 
@@ -114,14 +116,27 @@ func listFiles(path string) {
 			return files[i].Name() < files[j].Name()
 		})
 	}
+	
+	var line = ""
+	var width = getConsoleScreenWidth()
 
 	// 输出文件
 	for _, file := range files {
-		setColor(file)
 		if *longFormat {
 			printLongFormat(path, file)
 		} else {
-			fmt.Println(space() + file.Name())
+			if !*rn {
+				fmt.Println(space() + setStringColor(file))
+			} else {
+				var st = line + "\t"+ fmt.Sprintf("%s",setStringColor(file))
+				if float64(len(st)) >= (width*1.1) {
+					fmt.Println(line)
+					line = ""
+					line +=  fmt.Sprintf("%-15s\t",setStringColor(file))
+				}else{
+					line +=  fmt.Sprintf("%-15s\t",setStringColor(file))
+				}
+			}
 		}
 		if *recursive {
 			if file.IsDir() {
@@ -130,7 +145,6 @@ func listFiles(path string) {
 				depth--
 			}
 		}
-		clearColor()
 	}
 }
 
@@ -145,27 +159,70 @@ func space() string {
 	return sp
 }
 
-func clearColor(){
-	if *noColor {
-		return
+func printLongFormat(path string, file os.FileInfo) {
+	modTime := file.ModTime()
+	var owner, group string
+
+	if *numID || *noOwner {
+		owner = strconv.Itoa(os.Getuid())
+	} else {
+		usr, err := user.LookupId(strconv.Itoa(os.Getuid()))
+		if err != nil {
+			// owner = strconv.Itoa(os.Getuid())
+			owner = "-"
+		} else {
+			owner = usr.Username
+		}
 	}
-	fmt.Print("\033[0m")
+
+	if *numID || *noGroup {
+		group = strconv.Itoa(os.Getgid())
+	} else {
+		grp, err := user.LookupGroupId(strconv.Itoa(os.Getgid()))
+		if err != nil {
+			// group = strconv.Itoa(os.Getgid())
+			group = "-"
+		} else {
+			group = grp.Name
+		}
+	}
+
+	if *fullTime {
+		fmt.Printf("%s%s %-4d %-3s %-4s %-6s %13s  %s\n",
+			space(),
+			file.Mode().String(),
+			getLinkCount(path, file),
+			owner,
+			group,
+			formatSize(file.Size()),
+			modTime.Format("2006-01-02 15:04:05.000000000"),
+			setStringColor(file))
+	} else {
+		fmt.Printf("%s%s %-4d %-3s %-4s %-8s %13s  %s\n",
+			space(),
+			file.Mode().String(),
+			getLinkCount(path, file),
+			owner,
+			group,
+			formatSize(file.Size()),
+			modTime.Format("Jan 02 2006"),
+			setStringColor(file))
+	}
 }
 
-func setColor(file os.FileInfo) {
+func setStringColor(file os.FileInfo) string {
+	str := file.Name()
 	if *noColor {
-		return
+		return str
 	}
 	// 可执行文件后缀名数组
-	exts := []string{".exe", ".bat", ".cmd", ".com", ".sh"}
+	exts := []string{".exe", ".bat", ".cmd", ".com", ".sh",".app"}
 	hidden := isHidden(file)
 	if file.IsDir() {
 		if hidden {
-			fmt.Print("\033[3;34m")
-			return
+			return "\033[3;34m"+str+"\033[0m"
 		}
-		fmt.Print("\033[34m")
-		return
+		return "\033[34m"+str+"\033[0m"
 	}
 	if hidden {
 		fmt.Print("\033[3m")
@@ -180,59 +237,13 @@ func setColor(file os.FileInfo) {
 	}
 	// 绿色
 	if is {
-		fmt.Print("\033[32m")
-		return
-	}
-	fmt.Print("\033[0m")
-}
-
-func printLongFormat(path string, file os.FileInfo) {
-	modTime := file.ModTime()
-	var owner, group string
-
-	if *numID || *noOwner {
-		owner = strconv.Itoa(os.Getuid())
-	} else {
-		usr, err := user.LookupId(strconv.Itoa(os.Getuid()))
-		if err != nil {
-			owner = strconv.Itoa(os.Getuid())
-		} else {
-			owner = usr.Username
+		if hidden {
+			return "\033[3;32m"+str+"\033[0m"
 		}
+		return "\033[32m"+str+"\033[0m"
 	}
 
-	if *numID || *noGroup {
-		group = strconv.Itoa(os.Getgid())
-	} else {
-		grp, err := user.LookupGroupId(strconv.Itoa(os.Getgid()))
-		if err != nil {
-			group = strconv.Itoa(os.Getgid())
-		} else {
-			group = grp.Name
-		}
-	}
-
-	if *fullTime {
-		fmt.Printf("%s %s %d %s %s %s %s %s\n",
-			space(),
-			file.Mode().String(),
-			getLinkCount(path, file),
-			owner,
-			group,
-			formatSize(file.Size()),
-			modTime.Format("2006-01-02 15:04:05.000000000"),
-			file.Name())
-	} else {
-		fmt.Printf("%s %s %d %s %s %s %s %s\n",
-			space(),
-			file.Mode().String(),
-			getLinkCount(path, file),
-			owner,
-			group,
-			formatSize(file.Size()),
-			modTime.Format("Jan 02 15:04"),
-			file.Name())
-	}
+	return "\033[0m"+str
 }
 
 func getLinkCount(path string, file os.FileInfo) int {
@@ -242,7 +253,7 @@ func getLinkCount(path string, file os.FileInfo) int {
 		if err != nil {
 			return 1
 		}
-		return len(entries) + 2
+		return len(entries)
 	}
 	return 1
 }
@@ -251,16 +262,17 @@ func formatSize(size int64) string {
 	if !*humanSize {
 		return strconv.FormatInt(size, 10)
 	}
-	const unit = 1024
+	const unit = 1024 // B
 	if size < unit {
-		return fmt.Sprintf("%d B", size)
+		return fmt.Sprintf("%-4d %-1s", size,"B")
 	}
 	div, exp := int64(unit), 0
 	for n := size / unit; n >= unit; n /= unit {
 		div *= unit
 		exp++
 	}
-	return fmt.Sprintf("%.1f %cB", float64(size)/float64(div), "KMGTPE"[exp])
+	unitStr := strings.TrimSpace(fmt.Sprintf("%c","KMGTPE"[exp]))
+	return fmt.Sprintf("%-4.1f %-2s", float64(size)/float64(div), unitStr+"B")
 }
 
 func isHidden(file os.FileInfo) bool {
@@ -274,4 +286,51 @@ func isHidden(file os.FileInfo) bool {
 	}
 
 	return false
+}
+
+
+/// 窗口大小
+type (
+    short int16
+    word  uint16
+    dword uint32
+    coord struct {
+        X short
+        Y short
+    }
+    smallRect struct {
+        Left   short
+        Top    short
+        Right  short
+        Bottom short
+    }
+    consoleScreenBufferInfo struct {
+        Size              coord
+        CursorPosition    coord
+        Attributes        word
+        Window            smallRect
+        MaximumWindowSize coord
+    }
+)
+
+var kernel32 = syscall.NewLazyDLL("kernel32.dll")
+var procGetConsoleScreenBufferInfo = kernel32.NewProc("GetConsoleScreenBufferInfo")
+
+func getConsoleScreenBufferInfo(handle syscall.Handle) (consoleScreenBufferInfo, error) {
+    var csbi consoleScreenBufferInfo
+    ret, _, err := procGetConsoleScreenBufferInfo.Call(uintptr(handle), uintptr(unsafe.Pointer(&csbi)))
+    if ret == 0 {
+        return csbi, err
+    }
+    return csbi, nil
+}
+
+func getConsoleScreenWidth() float64 {
+	handle := syscall.Handle(os.Stdout.Fd())
+    csbi, err := getConsoleScreenBufferInfo(handle)
+    if err != nil {
+        fmt.Fprintln(os.Stderr, "Error getting console screen buffer info:", err)
+		return float64(-1)
+    }
+	return float64(csbi.Size.X)
 }
