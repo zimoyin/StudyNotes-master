@@ -34,7 +34,7 @@ var (
 	ctime      = flag.Bool("c", false, "with -l, print ctime and sort by ctime")
 	byColumn   = flag.Bool("C", false, "[Not implemented] list entries by columns")
 	noColor    = flag.Bool("noColor", false, "never show color")
-	fullTime   = flag.Bool("full-time", false, "like -l --time-style=full-iso")
+	fullTime   = flag.Bool("time", false, "like -l -time")
 	depth      = 0
 )
 
@@ -128,13 +128,13 @@ func listFiles(path string) {
 			if !*rn {
 				fmt.Println(space() + setStringColor(file))
 			} else {
-				var st = line + "\t"+ fmt.Sprintf("%s",setStringColor(file))
+				var st = line + fmt.Sprintf("%s%s",setStringColor(file),sp(25-len(file.Name())))
 				if float64(len(st)) >= (width*1.1) {
 					fmt.Println(line)
 					line = ""
-					line +=  fmt.Sprintf("%-15s\t",setStringColor(file))
+					line +=  fmt.Sprintf("%s%s",setStringColor(file),sp(25-len(file.Name())))
 				}else{
-					line +=  fmt.Sprintf("%-15s\t",setStringColor(file))
+					line +=  fmt.Sprintf("%s%s",setStringColor(file),sp(25-len(file.Name())))
 				}
 			}
 		}
@@ -146,6 +146,18 @@ func listFiles(path string) {
 			}
 		}
 	}
+	fmt.Println(line)
+}
+
+func sp(i int) string{
+	var s = ""
+	if i <=0 {
+		return "  "
+	}
+	for _ = range i {
+		s += " "
+	}
+	return s
 }
 
 func space() string {
@@ -188,7 +200,7 @@ func printLongFormat(path string, file os.FileInfo) {
 	}
 
 	if *fullTime {
-		fmt.Printf("%s%s %-4d %-3s %-4s %-6s %13s  %s\n",
+		fmt.Printf("%s%s %-4d %-3s %-4s %-11s %13s  %s\n",
 			space(),
 			file.Mode().String(),
 			getLinkCount(path, file),
@@ -198,7 +210,7 @@ func printLongFormat(path string, file os.FileInfo) {
 			modTime.Format("2006-01-02 15:04:05.000000000"),
 			setStringColor(file))
 	} else {
-		fmt.Printf("%s%s %-4d %-3s %-4s %-8s %13s  %s\n",
+		fmt.Printf("%s%s %-4d %-3s %-4s %-11s %13s  %s\n",
 			space(),
 			file.Mode().String(),
 			getLinkCount(path, file),
@@ -218,15 +230,15 @@ func setStringColor(file os.FileInfo) string {
 	// 可执行文件后缀名数组
 	exts := []string{".exe", ".bat", ".cmd", ".com", ".sh",".app"}
 	hidden := isHidden(file)
+	// 文件夹：蓝色
 	if file.IsDir() {
+		// 隐藏文件: 斜体
 		if hidden {
 			return "\033[3;34m"+str+"\033[0m"
 		}
 		return "\033[34m"+str+"\033[0m"
 	}
-	if hidden {
-		fmt.Print("\033[3m")
-	}
+
 	// 获取后缀名
 	is := false
 	ext := filepath.Ext(file.Name())
@@ -235,12 +247,18 @@ func setStringColor(file os.FileInfo) string {
 			is = true
 		}
 	}
-	// 绿色
+	// 可执行文件: 绿色
 	if is {
+		// 隐藏文件: 斜体
 		if hidden {
 			return "\033[3;32m"+str+"\033[0m"
 		}
 		return "\033[32m"+str+"\033[0m"
+	}
+
+	// 隐藏文件: 斜体
+	if hidden {
+		return "\033[3m"+str+"\033[0m"
 	}
 
 	return "\033[0m"+str

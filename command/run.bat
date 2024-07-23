@@ -69,6 +69,11 @@ if "%filename%"==".idea" (
     goto end
 )
 
+if "%filename%"==".vscode" (
+    code "%filename%"
+    goto end
+)
+
 if /I "%extension%"==".exe" (
     "%filename%" !params!
     goto end
@@ -167,13 +172,23 @@ if /I "%extension%"==".doc" (
     goto run
 )
 
+
 :: 检查是否为文件夹
 if exist "%filename%\" (
-    if exist "%filename%\.idea\" (
-        idea "%filename%"
-    ) else (
-        start "" "%filename%"
+    if exist "%filename%\.vscode\" (
+        set "found=1"
+        code "%filename%"
+        goto end
     )
+    if exist "%filename%\.idea\" (
+        set "found=1"
+        idea "%filename%"
+        goto end
+    )
+)
+:: 检查是否为文件夹
+if exist "%filename%\" (
+    start "" "%filename%"
     goto end
 )
 
@@ -208,5 +223,6 @@ if /I "%choice%"=="y" (
 
 :run
 start "" "%filename%"
+
 :end
 endlocal

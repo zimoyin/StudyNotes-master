@@ -42,9 +42,19 @@ if exist "%aliasFile%" (
 )
 
 :: 将命令保存到别名文件中，并添加注释
-echo :: alias > "%aliasFile%"
-echo @echo off >> "%aliasFile%"
-echo %command% >> "%aliasFile%"
+setlocal disabledelayedexpansion
+echo :: alias                                   > "%aliasFile%"
+echo @echo off                                  >> "%aliasFile%"
+echo setlocal enabledelayedexpansion            >> "%aliasFile%"
+echo set "params="                              >> "%aliasFile%"
+echo for %%%%i in (%%*) do (                    >> "%aliasFile%"
+echo     if defined params (                    >> "%aliasFile%"
+echo         set "params=!params! %%%%i"        >> "%aliasFile%"
+echo     ) else (                               >> "%aliasFile%"
+echo         set "params=%%%%i"                 >> "%aliasFile%"
+echo     )                                      >> "%aliasFile%"
+echo  )                                         >> "%aliasFile%"
+echo %command% %%params%%                       >> "%aliasFile%"
 
 echo 别名 %alias% 已创建，指向命令: %command%
 
