@@ -61,7 +61,7 @@
         </tx:attributes>
     </tx:advice>
 
-    <!--配置事务的切入-->
+    <!--配置事务的切入:com.zimo.mapper.* 都配置事务-->
     <aop:config>
         <aop:pointcut id="txPointcut" expression="execution(* com.zimo.mapper.*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
