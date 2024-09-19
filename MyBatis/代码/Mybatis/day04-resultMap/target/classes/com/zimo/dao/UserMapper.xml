@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace = 绑定一个对应的Dao/mapper接口-->
+<!-- 绑定com.zimo.dao.UserDao 接口-->
+<mapper namespace="com.zimo.dao.UserMapper">
+
+    <select id="getUserByID" resultType="com.zimo.pojo.User">
+        select  id,name,pwd as password from mybatis.user where id=#{id};
+    </select>
+
+    <!--
+        结果映射：
+            将sql的字段名映射到实体类中的属性名中
+     -->
+    <resultMap id="UserMap" type="com.zimo.pojo.User">
+        <result column="id"     property="id" />
+        <result column="name"   property="name"/>
+        <result column="pwd"    property="password"/>
+    </resultMap>
+
+    <!--使用resultMap，他的值是<resultMap/> 这个标签的ID-->
+    <select id="getUserMapByID" resultMap="UserMap">
+        select  id,name,pwd from mybatis.user where id=#{id};
+    </select>
+</mapper>

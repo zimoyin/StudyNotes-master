@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.zimo.dao.StudentMapper">
+
+
+    <!--方法二： 按照结果嵌套处理-->
+
+    <resultMap id="StudentTeacher" type="student">
+        <!--将类的属性和数据库表字段对应起来，因为表的字段起了别名所以这里对应别名-->
+        <result property="id" column="sid"/>
+        <result property="name" column="sname"/>
+        <association property="teacher" javaType="Teacher">
+            <result property="name" column="tname"/>
+        </association>
+    </resultMap>
+
+
+    <select id="getStudent" resultMap="StudentTeacher">
+        SELECT
+            s.id sid,
+            s.name sname,
+            t.name tname
+        FROM
+            student s,
+            teacher t
+        WHERE s.tid=t.`id`;
+    </select>
+
+
+
+
+
+
+    <!--
+        方法一：
+
+        思路:     按照查询嵌套处理
+            1. 查询所有的学生信息
+            2. 根据查询出来的学生的tid，寻找老师
+
+
+
+    <resultMap id="StudentTeacher" type="Student">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+
+          //  复杂的属性，我们需要单独处理     对象:association      集合:collection
+
+          //  property="teacher" column="tid" 将Student的属性名与数据库的字段名对应起来
+          //  javaType="Teacher"  说明这个对象是谁
+          //  select="getTeacher"  去查询老师这个表
+
+        <association property="teacher" column="tid" javaType="Teacher" select="getTeacher"/>
+    </resultMap>
+
+
+    <select id="getStudent" resultMap="StudentTeacher">
+        SELECT * FROM student
+    </select>
+
+    <select id="getTeacher" resultType="teacher">
+        SELECT * FROM teacher where id= #{tid}
+    </select>
+
+        -->
+
+</mapper>

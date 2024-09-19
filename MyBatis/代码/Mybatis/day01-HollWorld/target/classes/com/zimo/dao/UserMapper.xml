@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace = 绑定一个对应的Dao/mapper接口-->
+<!-- 绑定com.zimo.dao.UserDao 接口-->
+<mapper namespace="com.zimo.dao.UserDao">
+
+<!--  select 查找语句 -->
+<!--  执行后的结果放入 getUserList 中 -->
+<!--  resultType:返回一个结果,参数填返回的类型，他的类型是User 所以放入User的全限定名  -->
+<!--  resultType：返回多个结果 -->
+    <select id="getUserList" resultType="com.zimo.pojo.User">
+        select  id,name,pwd from mybatis.user;
+    </select>
+
+</mapper>

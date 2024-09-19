@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--核心配置文件-->
+<configuration>
+
+<!--  引入外部配置文件  -->
+    <properties resource="db.properties"></properties>
+
+<!--  别名  -->
+    <typeAliases>
+        <typeAlias type="com.zimo.pojo.User" alias="User"/>
+        <package name="com.zimo.pojo"/>
+    </typeAliases>
+
+<!--  default="设置默认环境"  -->
+    <environments default="test">
+
+        <!--   development环境     -->
+        <environment id="development">
+            <!--  设置事务管理  ：JDBC | MANAGED -->
+            <transactionManager type="JDBC"/>
+            <!-- 数据源:连接数据库 type="POOLED | UNPOOLED | UNDI"
+            POOLED:有链接池子，默认10个连接数
+            UNPOOLED:没链接池子
+            -->
+            <dataSource type="POOLED">
+                <!--  驱动  -->
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <!--  数据库地址  -->
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+                <!--  用户名  -->
+                <property name="username" value="root"/>
+                <!--  密码  -->
+                <property name="password" value="123"/>
+            </dataSource>
+        </environment>
+
+        <!--   test环境     -->
+        <environment id="test">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+    </environments>
+
+<!--  每一个Mapper.XML都需要在MyBatis核心配置文件中注册  -->
+    <mappers>
+        <mapper resource="com\zimo\dao\UserMapper.xml" />
+<!--        <mapper class="com.zimo.dao.UserMapper"/>-->
+<!--        <package name="com.zimo.dao" />-->
+    </mappers>
+</configuration>
