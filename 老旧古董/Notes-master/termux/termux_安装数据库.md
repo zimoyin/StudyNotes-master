@@ -1,6 +1,7 @@
 # 安装数据库
 
-##安装
+## 安装
+
 ```
 pkg install mariadb
 ```

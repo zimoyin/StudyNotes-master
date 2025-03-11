@@ -2,7 +2,7 @@
 
 # java类加载器
 
-**作者：子墨**
+
 
 
 
@@ -506,6 +506,8 @@ public class OA {
 
 ~~将class文件加密，再获取class文件时解密，然后再jvm虚拟机中创建class文件~~ 
 ~~jar加密有两种一种事直接将jar加密，另一种是将加密后的class文件打包成jar文件~~
+
+或者使用 **JVMTI** 进行加密
 
 
 
