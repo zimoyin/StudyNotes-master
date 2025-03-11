@@ -11,6 +11,7 @@ Compose Multiplatform 是 JetBrains 为桌面平台（macOS，Linux，Windows）
 * 性能优化: https://juejin.cn/post/7306802651010105344?searchId=20240113204924BDAD4D1A3940B6E9F331
 * 响应式布局: https://juejin.cn/post/7307838693145903138?searchId=20240113204911F202EF8610E9B5E697D6
 * compose 中文教程: https://jetpackcompose.cn/docs/
+* Kamel Compose 的 Kotlin 异步媒体加载和缓存库。
 
 如何构建工程:
 
