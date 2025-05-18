@@ -7342,3 +7342,22 @@ fun HelloContent() {
 > 链接：https://juejin.cn/post/7114659612946595876
 > 来源：稀土掘金
 > 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+## 23. 协程
+
+
+
+### 23.1 LaunchedEffect 
+
+`LaunchedEffect` 是 **Jetpack Compose** 中用于在 **可组合函数（Composable）** 中启动协程（Coroutine）的一个内置函数。它与 Composable 的生命周期绑定，确保协程的执行和取消与 UI 组件的生命周期同步，避免内存泄漏和不必要的资源占用。
+
+**注意： 当 Composable 离开组合时，`LaunchedEffect` 中的协程会自动取消，避免内存泄漏。如果正在执行网络IO等，则会终止，因此对于网络IO等请使用 rememberCoroutineScope **
+
+
+
+### 23.2 rememberCoroutineScope 和 `viewModelScope` 
+
+在 Android 开发中，`rememberCoroutineScope` 和 `viewModelScope` 是两个用于管理协程生命周期的核心工具，它们分别适用于 **Jetpack Compose 的 UI 层** 和 **ViewModel 层**
+
