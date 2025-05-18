@@ -7342,3 +7342,155 @@ fun HelloContent() {
 > 链接：https://juejin.cn/post/7114659612946595876
 > 来源：稀土掘金
 > 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+## 23. 协程
+
+
+
+### 23.1 LaunchedEffect 
+
+`LaunchedEffect` 是 **Jetpack Compose** 中用于在 **可组合函数（Composable）** 中启动协程（Coroutine）的一个内置函数。它与 Composable 的生命周期绑定，确保协程的执行和取消与 UI 组件的生命周期同步，避免内存泄漏和不必要的资源占用。
+
+**注意： 当 Composable 离开组合时，`LaunchedEffect` 中的协程会自动取消，避免内存泄漏。如果正在执行网络IO等，则会终止，因此对于网络IO等请使用 rememberCoroutineScope **
+
+
+
+### 23.2 rememberCoroutineScope 和 `viewModelScope` 
+
+在 Android 开发中，`rememberCoroutineScope` 和 `viewModelScope` 是两个用于管理协程生命周期的核心工具，它们分别适用于 **Jetpack Compose 的 UI 层** 和 **ViewModel 层**
+
+
+
+### 23.3 实战：计算任务
+
+在 Jetpack Compose 中执行 **计算任务** 并 **更新 UI** 是一个常见的需求。为了确保应用的性能和稳定性，我们需要合理地将 **耗时计算** 移动到后台线程，并在计算完成后 **安全地更新 UI 状态**。
+
+以下是推荐的实现方式，结合 Jetpack Compose 的生命周期管理和 Kotlin 协程的最佳实践：
+
+---
+
+#### 场景说明
+
+你需要在 Composable 中执行一些计算（如数据处理、图像转换等），并最终将结果展示在 UI 上。这类操作通常包括以下步骤：
+
+1. **启动协程**（生命周期感知）
+2. **切换到后台线程** 执行计算
+3. **计算完成后更新 UI 状态**
+4. **触发 UI 重组** 显示结果
+
+---
+
+####  实现方式一：自动触发（使用 `LaunchedEffect`）
+
+适用于 **计算任务依赖某个状态**（如输入参数）并需要在状态变化时自动重新执行。
+
+#####  示例代码
+
+```kotlin
+@Composable
+fun ComputeAndDisplay(input: String) {
+    var result by remember { mutableStateOf<String?>(null) }
+
+    LaunchedEffect(input) {
+        // 切换到后台线程执行计算
+        val computed = withContext(Dispatchers.Default) {
+            // 模拟耗时计算
+            delay(1000)
+            "Computed: $input"
+        }
+
+        // 自动切回主线程更新状态
+        result = computed
+    }
+
+    // 显示结果
+    when (val currentResult = result) {
+        null -> CircularProgressIndicator()
+        else -> Text(text = currentResult)
+    }
+}
+```
+
+##### 说明
+
+- `LaunchedEffect(input)`：当 `input` 变化时，协程会自动重启。
+- `withContext(Dispatchers.Default)`：使用适合 CPU 密集型任务的线程池。
+- `result` 更新后，Compose 会自动触发重组，显示新结果。
+
+---
+
+#### 实现方式二：手动触发（使用 `rememberCoroutineScope`）
+
+适用于 **用户交互触发计算**（如点击按钮），不依赖状态变化。
+
+##### 示例代码
+
+```kotlin
+@Composable
+fun ComputeOnDemand(viewModel: ComputeViewModel) {
+    var result by remember { mutableStateOf<String?>(null) }
+    val scope = rememberCoroutineScope()
+
+    Column {
+        Button(onClick = {
+            scope.launch {
+                val computed = withContext(Dispatchers.Default) {
+                    viewModel.computeData()
+                }
+                result = computed
+            }
+        }) {
+            Text("Start Computation")
+        }
+
+        when (val currentResult = result) {
+            null -> Text("No result yet.")
+            else -> Text(text = currentResult)
+        }
+    }
+}
+```
+
+##### 说明
+
+- `rememberCoroutineScope()`：绑定到 Composable 生命周期，避免内存泄漏。
+- `scope.launch`：手动控制协程的启动时机。
+- 通过 `withContext(Dispatchers.Default)` 切换到后台线程执行计算。
+- 更新 `result` 后，Compose 自动更新 UI。
+
+---
+
+#### 线程切换建议
+
+| 任务类型               | 推荐调度器            | 说明                 |
+| ---------------------- | --------------------- | -------------------- |
+| 耗时计算（如图像处理） | `Dispatchers.Default` | 适合 CPU 密集型任务  |
+| 网络请求、数据库读写   | `Dispatchers.IO`      | 适合 I/O 密集型任务  |
+| UI 操作（更新状态）    | 主线程（默认）        | 不需要 `withContext` |
+
+---
+
+#####  最佳实践总结
+
+| 项目               | 建议                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| **协程启动方式**   | 根据是否依赖状态选择 `LaunchedEffect` 或 `rememberCoroutineScope` |
+| **线程切换**       | 使用 `withContext(Dispatchers.Default)` 执行计算             |
+| **状态更新**       | 在主线程更新 `MutableState`，触发 UI 重组                    |
+| **生命周期管理**   | 避免使用 `GlobalScope`，优先使用生命周期感知的作用域         |
+| **错误处理**       | 使用 `try-catch` 捕获异常，避免崩溃                          |
+| **避免阻塞主线程** | 所有耗时操作必须在后台线程中执行                             |
+
+---
+
+####  总结
+
+在 Composable 中执行计算并显示结果，推荐使用以下两种方式：
+
+- **自动触发**：使用 `LaunchedEffect`，适合依赖状态变化的场景。
+- **手动触发**：使用 `rememberCoroutineScope`，适合用户交互触发的场景。
+
+无论哪种方式，都应使用 `withContext(Dispatchers.Default)` 切换到后台线程执行计算任务，并在计算完成后更新状态以触发 UI 更新。这样可以确保应用既高效又稳定，符合 Jetpack Compose 的最佳实践。
+
