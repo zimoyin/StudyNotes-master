@@ -7361,9 +7361,69 @@ fun HelloContent() {
 
 在 Android 开发中，`rememberCoroutineScope` 和 `viewModelScope` 是两个用于管理协程生命周期的核心工具，它们分别适用于 **Jetpack Compose 的 UI 层** 和 **ViewModel 层**
 
+### 23.3 produceState
+在 Jetpack Compose 中，produceState 是一个用于 异步生成状态（State） 的 Composable 函数。它的核心作用是将 非 UI 层的数据源（如网络请求、数据库查询、复杂计算） 转换为 Composable 可以观察和使用的状态（State），从而触发 UI 重组。
 
+```kotlin
+@Composable
+fun <T> AsyncImage(
+    load: suspend () -> T,
+    contentDescription: String,
+    modifier: Modifier = Modifier,
+    contentScale: ContentScale = ContentScale.Fit,
+) {
+    // 使用 `produceState` 函数从 IO 协程加载异步资源，并将其状态安全地应用于 Compose 组件的状态管理。
+    // `produceState` 是一个函数，它会创建一个可以被 Compose 系统观察并自动更新 UI 的状态对象。
+    // 当其内部的计算结果发生变化时，依赖于此状态的所有 Composable 部件将会重新组合（recompose）。
+    val image: T? by produceState<T?>(null) {
+        value = withContext(Dispatchers.IO) {
+            try {
+                load()
+            } catch (e: IOException) {
+                // instead of printing to console, you can also write this to log,
+                // or show some error placeholder
+                e.printStackTrace()
+                null
+            }
+        }
+    }
 
-### 23.3 实战：计算任务
+    if (image != null) {
+        val painter = when (image!!) {
+            is ImageBitmap -> BitmapPainter(image!! as ImageBitmap)
+            is Painter -> image
+            is ImageVector -> rememberVectorPainter(image!! as ImageVector)
+            else -> {
+                throw IllegalArgumentException("Unsupported image type: $image")
+            }
+        } as Painter
+        Image(
+            painter = remember {painter },
+            contentDescription = contentDescription,
+            contentScale = contentScale,
+            modifier = modifier
+        )
+    }
+}
+
+```
+
+虽然 produceState 默认在 主线程 启动协程，但你可以通过 withContext 切换到后台线程执行 CPU 密集型任务 。
+```kotlin
+@Composable
+fun ComputeResult(input: Int): Int {
+    val result = produceState<Int>(initialValue = 0, key1 = input) {
+        value = withContext(Dispatchers.Default) {
+            // 执行复杂计算
+            heavyComputation(input)
+        }
+    }
+    return result.value
+}
+
+```
+
+### 23.4 实战：计算任务
 
 在 Jetpack Compose 中执行 **计算任务** 并 **更新 UI** 是一个常见的需求。为了确保应用的性能和稳定性，我们需要合理地将 **耗时计算** 移动到后台线程，并在计算完成后 **安全地更新 UI 状态**。
 
