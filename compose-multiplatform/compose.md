@@ -7048,13 +7048,18 @@ fun Modifier.moveFocusOnTab() = composed {
 
 
 
-## 17. Navigation
+## 17. Navigation（导航）
 
-1. Jetpack [Compose 导航库](https://developer.android.com/jetpack/compose/navigation)目前是仅适用于 Android 的库。
+1. [Jetpack Compose 导航库](https://developer.android.com/jetpack/compose/navigation)
+   * 仅适用于 Android 库的：https://developer.android.com/jetpack/compose/navigation
+   * **jetbrains 开发的 (推荐)**： https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation.html#basic-navigation-example
 2. 但是目前个人开发了个**简易的导航库** 请见 [nav](nav) 文件夹。使用示例请见 [example](nav%2Fexample)
-3.  [**Decompose**](https://github.com/arkivanov/Decompose) ：（支持导航）UI 和业务逻辑和导航逻辑三者严格分离。需要一定学习成本
-4. [PreCompose](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2FTlaster%2FPreCompose)：  是一个 Kotlin Multiplatform 库，目的是为了让 Kotlin 开发者能够像 Flutter 那样只需要写一套业务逻辑代码和一套 Compose UI 代码就可以在各个平台上运行，同时还能用上大家熟悉的 ViewModel 和 Navigation，目前支持 Android/iOS/Dekstop。
-5. [Voyager](https://github.com/adrielcafe/voyager) ： [官方专为 Multiplatform  Compose](https://voyager.adriel.cafe/)构建并与 Jetpack Compose 无缝集成的**多平台**导航库。
+3. [**Decompose**](https://github.com/arkivanov/Decompose) ：涵盖整个生命周期和任何潜在依赖注入的高级导航方法
+4. [PreCompose](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2FTlaster%2FPreCompose)：  受 Jetpack Lifecycle、ViewModel、LiveData 和 Navigation 启发的导航和视图模型。目的是为了让 Kotlin 开发者能够像 Flutter 那样只需要写一套业务逻辑代码和一套 Compose UI 代码就可以在各个平台上运行
+5. [Voyager](https://github.com/adrielcafe/voyager) ： 实用的导航方法
+6. [Circuit](https://slackhq.github.io/circuit/)：适用于 Kotlin 应用程序的 Compose 驱动架构，具有导航和高级状态管理功能。
+7. [Appyx](https://bumble-tech.github.io/appyx/)：带有手势控制的模型驱动导航
+
 
 ## 18. Swing 互操作性
 
@@ -7554,3 +7559,19 @@ fun ComputeOnDemand(viewModel: ComputeViewModel) {
 
 无论哪种方式，都应使用 `withContext(Dispatchers.Default)` 切换到后台线程执行计算任务，并在计算完成后更新状态以触发 UI 更新。这样可以确保应用既高效又稳定，符合 Jetpack Compose 的最佳实践。
 
+
+## 24. Res 资源
+> Compose Multiplatform 提供了一个特殊的compose-multiplatform-resources库和 Gradle 插件支持，用于在所有受支持的平台上以通用代码访问资源。资源是静态内容，例如图像、字体和字符串，您可以在应用中使用它们。
+>
+> 在 Compose Multiplatform 中使用资源时，请考虑当前条件：
+> * 几乎所有资源都是在调用线程中同步读取的。唯一的例外是原始文件和 Web 资源，它们是异步读取的。
+> 
+> * 目前尚不支持以流的形式读取大型原始文件（例如长视频）。请使用该getUri()函数将单独的文件传递给系统 API，例如kotlinx-io库。
+>
+> *  从 1.6.10 开始，只要您使用的是 Kotlin 2.0.0 或更新版本以及 Gradle 7.6 或更新版本，您就可以将资源放置在任何模块或源集中。
+
+原始连接： https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-multiplatform-resources.html
+
+
+## 25. 本地化
+原始连接： https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-localize-strings.html
