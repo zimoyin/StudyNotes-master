@@ -3380,7 +3380,7 @@ fun main() = application {
 * 乱序的菜单项，除非你手动指定菜单顺序
 
 ```kotlin
-package com.github.zimoyin.ui.tray
+package io.github.zimoyin.xianyukefu
 
 import androidx.compose.runtime.*
 import androidx.compose.ui.geometry.Size
@@ -3392,9 +3392,11 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.window.Notification
 import androidx.compose.ui.window.TrayState
 import androidx.compose.ui.window.rememberTrayState
-import com.github.zimoyin.utils.IO
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.awt.*
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
@@ -3467,7 +3469,7 @@ fun TrayWindow(
             }
         )
     }.apply {
-        style.setStyle2(this)
+        style.setStyle(this)
     }
     val menuScopeR by rememberUpdatedState(MenuScope(menu, isSort = isSort))
 
@@ -3544,6 +3546,14 @@ private fun TrayIcon.displayMessage(notification: Notification) {
 private fun openMenu(pointer: Point, menuWindow: JDialog, menu: JPopupMenu, menuSize: Dimension) {
     val x = pointer.x
     val y = pointer.y
+
+    // 添加以下代码确保菜单置顶
+    menuWindow.isAlwaysOnTop = true
+    menuWindow.toFront()
+
+    // 显式设置菜单的父组件
+    menu.invoker = menuWindow.contentPane
+
     //右键点击弹出JPopupMenu绑定的载体以及JPopupMenu
     menuWindow.setLocation(x, y)
     menuWindow.isVisible = true
@@ -3702,8 +3712,9 @@ class MenuScope(val menu: JPopupMenu, val menuItem: JMenu? = null, var isSort: B
         orderIndex: Int = -1,
         onClick: () -> Unit = {},
     ) {
+        val scope = rememberCoroutineScope()
         val order = if (orderIndex >= 0) {
-            IO { initCustomSorting() }
+            scope.launch { withContext(Dispatchers.IO) { initCustomSorting() } }
             if (isSort) orderIndex else -1
         } else {
             rememberOrder()
@@ -3771,8 +3782,9 @@ class MenuScope(val menu: JPopupMenu, val menuItem: JMenu? = null, var isSort: B
     @Composable
     fun Separator(orderIndex: Int = -1) {
         check(menuItem == null) { "Separator only support menu" }
+        val scope = rememberCoroutineScope()
         val order = if (orderIndex >= 0) {
-            IO { initCustomSorting() }
+            scope.launch { withContext(Dispatchers.IO) { initCustomSorting() } }
             if (isSort) orderIndex else -1
         } else {
             rememberOrder()
@@ -3797,8 +3809,9 @@ class MenuScope(val menu: JPopupMenu, val menuItem: JMenu? = null, var isSort: B
     @Composable
     fun VerticalSeparator(orderIndex: Int = -1) {
         check(menuItem == null) { "VerticalSeparator only support menu" }
+        val scope = rememberCoroutineScope()
         val order = if (orderIndex >= 0) {
-            IO { initCustomSorting() }
+            scope.launch { withContext(Dispatchers.IO) { initCustomSorting() } }
             if (isSort) orderIndex else -1
         } else {
             rememberOrder()
@@ -3841,8 +3854,9 @@ class MenuScope(val menu: JPopupMenu, val menuItem: JMenu? = null, var isSort: B
         orderIndex: Int = -1,
         onCheckedChange: (Boolean) -> Unit = {},
     ) {
+        val scope = rememberCoroutineScope()
         val order = if (orderIndex >= 0) {
-            IO { initCustomSorting() }
+            scope.launch { withContext(Dispatchers.IO) { initCustomSorting() } }
             if (isSort) orderIndex else -1
         } else {
             rememberOrder()
@@ -3895,8 +3909,9 @@ class MenuScope(val menu: JPopupMenu, val menuItem: JMenu? = null, var isSort: B
         orderIndex: Int = -1,
         onCheckedChange: (Boolean) -> Unit = {},
     ) {
+        val scope = rememberCoroutineScope()
         val order = if (orderIndex >= 0) {
-            IO { initCustomSorting() }
+            scope.launch { withContext(Dispatchers.IO) { initCustomSorting() } }
             if (isSort) orderIndex else -1
         } else {
             rememberOrder()
@@ -3950,8 +3965,9 @@ class MenuScope(val menu: JPopupMenu, val menuItem: JMenu? = null, var isSort: B
         orderIndex: Int = -1,
         content: @Composable MenuScope.() -> Unit,
     ) {
+        val scope = rememberCoroutineScope()
         val order = if (orderIndex >= 0) {
-            IO { initCustomSorting() }
+            scope.launch { withContext(Dispatchers.IO) { initCustomSorting() } }
             if (isSort) orderIndex else -1
         } else {
             rememberOrder()
@@ -3994,8 +4010,9 @@ class MenuScope(val menu: JPopupMenu, val menuItem: JMenu? = null, var isSort: B
         orderIndex: Int = -1,
         content: @Composable MenuScope.() -> Component,
     ) {
+        val scope = rememberCoroutineScope()
         val order = if (orderIndex >= 0) {
-            IO { initCustomSorting() }
+            scope.launch { withContext(Dispatchers.IO) { initCustomSorting() } }
             if (isSort) orderIndex else -1
         } else {
             rememberOrder()
@@ -4017,8 +4034,9 @@ class MenuScope(val menu: JPopupMenu, val menuItem: JMenu? = null, var isSort: B
         orderIndex: Int = -1,
         component: Component,
     ) {
+        val scope = rememberCoroutineScope()
         val order = if (orderIndex >= 0) {
-            IO { initCustomSorting() }
+            scope.launch { withContext(Dispatchers.IO) { initCustomSorting() } }
             if (isSort) orderIndex else -1
         } else {
             rememberOrder()
@@ -4131,37 +4149,42 @@ data class ComponentStyle(
 ) {
     private var color: Color? = background?.toAwtColor()
 
+    val Pair<MouseEvent, JComponent>.mouseEvent: MouseEvent
+        get() = this.first
+    val Pair<MouseEvent, JComponent>.jComponent: JComponent
+        get() = this.second
+
     /**
      * 鼠标进入事件
      */
-    val onMouseEnter: (MouseEvent) -> Unit = {
-        color = it.component.background
-        it.component.background = color
+    val onMouseEnter: (Pair<MouseEvent, JComponent>) -> Unit = {
+        color = it.jComponent.background
+        it.jComponent.background = color
     }
 
     /**
      * 鼠标离开事件
      */
-    val onMouseExit: (MouseEvent) -> Unit = {
-        it.component.background = color ?: Color.white
+    val onMouseExit: (Pair<MouseEvent, JComponent>) -> Unit = {
+        it.jComponent.background = color ?: Color.white
     }
 
     /**
      * 鼠标点击事件
      */
-    val onMouseClick: (MouseEvent) -> Unit = {
+    val onMouseClick: (Pair<MouseEvent, JComponent>) -> Unit = {
     }
 
     /**
      * 鼠标按下事件
      */
-    val onMousePressed: (MouseEvent) -> Unit = {
+    val onMousePressed: (Pair<MouseEvent, JComponent>) -> Unit = {
     }
 
     /**
      * 鼠标释放事件
      */
-    val onMouseReleased: (MouseEvent) -> Unit = {
+    val onMouseReleased: (Pair<MouseEvent, JComponent>) -> Unit = {
     }
 
     /**
@@ -4191,28 +4214,28 @@ data class ComponentStyle(
         if (bounds != null) component.bounds = bounds
         component.addMouseListener(object : MouseListener {
             override fun mouseClicked(e: MouseEvent) {
-                style.onMouseClick(e)
+                style.onMouseClick(Pair(e, component))
             }
 
             override fun mousePressed(e: MouseEvent) {
-                style.onMousePressed(e)
+                style.onMousePressed(Pair(e, component))
             }
 
             override fun mouseReleased(e: MouseEvent) {
-                style.onMouseReleased(e)
+                style.onMouseReleased(Pair(e, component))
             }
 
             override fun mouseEntered(e: MouseEvent) {
-                style.onMouseEnter(e)
+                style.onMouseEnter(Pair(e, component))
             }
 
             override fun mouseExited(e: MouseEvent) {
-                style.onMouseExit(e)
+                style.onMouseExit(Pair(e, component))
             }
         })
     }
 
-    fun setStyle2(component: JComponent) {
+    fun setStyle(component: JComponent) {
         val style = this
         if (font != null) component.font = font
         if (foreground != null) component.foreground = foreground.toAwtColor()
@@ -4223,23 +4246,23 @@ data class ComponentStyle(
         if (bounds != null) component.bounds = bounds
         component.addMouseListener(object : MouseListener {
             override fun mouseClicked(e: MouseEvent) {
-                style.onMouseClick(e)
+                style.onMouseClick(Pair(e, component))
             }
 
             override fun mousePressed(e: MouseEvent) {
-                style.onMousePressed(e)
+                style.onMousePressed(Pair(e, component))
             }
 
             override fun mouseReleased(e: MouseEvent) {
-                style.onMouseReleased(e)
+                style.onMouseReleased(Pair(e, component))
             }
 
             override fun mouseEntered(e: MouseEvent) {
-                style.onMouseEnter(e)
+                style.onMouseEnter(Pair(e, component))
             }
 
             override fun mouseExited(e: MouseEvent) {
-                style.onMouseExit(e)
+                style.onMouseExit(Pair(e, component))
             }
         })
     }
@@ -4302,6 +4325,114 @@ enum class DesktopPlatform {
 }
 
 private fun androidx.compose.ui.graphics.Color.toAwtColor(): Color = Color(this.red, this.green, this.blue, this.alpha)
+
+```
+
+#### 使用示例:
+```kotlin
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Button
+import androidx.compose.material.Text
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.window.Tray
+import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.WindowState
+import androidx.compose.ui.window.application
+import androidx.compose.ui.window.rememberNotification
+import androidx.compose.ui.window.rememberTrayState
+import androidx.compose.ui.window.rememberWindowState
+import io.github.zimoyin.xianyukefu.ButtonType
+import io.github.zimoyin.xianyukefu.TrayWindow
+import javax.swing.JButton
+
+fun main() = application {
+    var count by remember { mutableStateOf(0) }
+
+    val WindowState = rememberWindowState()
+    val isWindowShow = remember { mutableStateOf(true) }
+
+
+    val trayState = rememberTrayState()
+    val notification = rememberNotification("Notification", "Message from MyApp!")
+
+    TrayWindow(
+        state = trayState,
+        icon = TrayIcon,
+        onAction = {
+            if (!isWindowShow.value) isWindowShow.value = true
+            WindowState.isMinimized = false
+        },
+        onClick = {
+            if (!isWindowShow.value) isWindowShow.value = true
+            WindowState.isMinimized = false
+        }
+    ) {
+        Item("增加值xxxxxxxxxxxxxxxxxxxxxxxxxxx") {
+            count++
+        }
+        Item("发送通知") {
+            trayState.sendNotification(notification)
+        }
+        Item("退出") {
+            exitApplication()
+        }
+
+        // Item
+        // Label
+        // Separator
+        // VerticalSeparator
+        // CheckboxItem
+        // RadioButtonItem
+        // Menu
+        // Component // 用于添加 JWT 的组件
+    }
+
+    Window(
+        onCloseRequest = {
+            isWindowShow.value
+        },
+        icon = MyAppIcon,
+        state = WindowState
+    ) {
+        // Content:
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(text = "Value: $count")
+        }
+    }
+
+}
+
+object MyAppIcon : Painter() {
+    override val intrinsicSize = Size(256f, 256f)
+
+    override fun DrawScope.onDraw() {
+        drawOval(Color.Green, Offset(size.width / 4, 0f), Size(size.width / 2f, size.height))
+        drawOval(Color.Blue, Offset(0f, size.height / 4), Size(size.width, size.height / 2f))
+        drawOval(Color.Red, Offset(size.width / 4, size.height / 4), Size(size.width / 2f, size.height / 2f))
+    }
+}
+
+object TrayIcon : Painter() {
+    override val intrinsicSize = Size(256f, 256f)
+
+    override fun DrawScope.onDraw() {
+        drawOval(Color(0xFFFFA500))
+    }
+}
 ```
 
 
@@ -7365,6 +7496,24 @@ fun HelloContent() {
 ### 23.2 rememberCoroutineScope 和 `viewModelScope` 
 
 在 Android 开发中，`rememberCoroutineScope` 和 `viewModelScope` 是两个用于管理协程生命周期的核心工具，它们分别适用于 **Jetpack Compose 的 UI 层** 和 **ViewModel 层**
+
+1. rememberCoroutineScope  
+
+`rememberCoroutineScope` 是 Jetpack Compose 中用于创建协程作用域的函数，其生命周期与当前 Composable 函数的组合生命周期绑定。
+
+* 默认调度器 ：它继承自 `MainScope()`，而 `MainScope()` 默认使用 `Dispatchers.Main`，即协程在 主线程（UI 线程） 上执行。
+* rememberCoroutineScope 可以传入参数
+* 适用场景 ：适用于执行与 UI 相关的操作，如动画、状态更新、轻量级的 UI 逻辑等。
+
+2. viewModelScope  
+
+`viewModelScope` 是 `ViewModel` 的扩展属性，用于在 `ViewModel` 中启动协程，其生命周期与 `ViewModel` 的生命周期一致。
+* 默认调度器 ：`viewModelScope` 内部使用的是 `Dispatchers.Main.immediate`，这意味着协程会在主线程上执行（如果当前线程已经是主线程，则立即执行）。
+* 适用场景 ：适用于处理与 UI 交互相关的轻量级逻辑，如数据绑定、状态更新等。
+
+  
+
+> **他们都可以使用 withContext 切换到其他协程**
 
 ### 23.3 produceState
 在 Jetpack Compose 中，produceState 是一个用于 异步生成状态（State） 的 Composable 函数。它的核心作用是将 非 UI 层的数据源（如网络请求、数据库查询、复杂计算） 转换为 Composable 可以观察和使用的状态（State），从而触发 UI 重组。
